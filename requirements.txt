@@ -1,0 +1,27 @@
+# Azure ML + Semantic Kernel Agentic AI
+# Python 3.9+ 필요 (3.10, 3.11 권장)
+
+# === 핵심 패키지 ===
+semantic-kernel>=1.0.0
+
+# === Azure 인증 (Managed Identity / Service Principal) ===
+azure-identity>=1.15.0
+
+# === Azure ML SDK (선택 - Azure ML 파이프라인 통합 시) ===
+# azure-ai-ml>=1.12.0
+
+# === Azure Key Vault 연동 (선택 - 시크릿 관리) ===
+# azure-keyvault-secrets>=4.7.0
+
+# === Azure AI Search 연동 (선택 - 실제 검색 기능) ===
+# azure-search-documents>=11.4.0
+
+# === 환경 변수 관리 (로컬 개발용) ===
+python-dotenv>=1.0.0
+
+# === 데이터 처리 (선택 - 고급 분석 시) ===
+# numpy>=1.24.0
+# pandas>=2.0.0
+
+# === 비동기 지원 ===
+aiohttp>=3.9.0
