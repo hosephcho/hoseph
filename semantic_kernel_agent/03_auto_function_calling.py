@@ -38,10 +38,18 @@ from config.settings import get_azure_openai_config
 from plugins.math_plugin import MathPlugin
 from plugins.data_analysis_plugin import DataAnalysisPlugin
 from plugins.web_search_plugin import WebSearchPlugin
+from utils.query_history import QueryHistory
 
 
-async def agentic_loop(kernel: sk.Kernel, chat_service, history: ChatHistory,
-                       execution_settings, user_input: str, max_iterations: int = 10):
+async def agentic_loop(
+    kernel: sk.Kernel,
+    chat_service,
+    history: ChatHistory,
+    execution_settings,
+    user_input: str,
+    query_history: QueryHistory | None = None,
+    max_iterations: int = 10,
+):
     """
     Agentic AI의 핵심 루프 구현
 
@@ -50,6 +58,8 @@ async def agentic_loop(kernel: sk.Kernel, chat_service, history: ChatHistory,
     2. 함수 호출 및 결과 수집
     3. 결과를 바탕으로 다음 단계 진행
     """
+    if query_history is not None:
+        query_history.add(user_input)        # Query History에 기록
     history.add_user_message(user_input)
     print(f"\n[Agent] 목표: {user_input}")
     print("=" * 60)
@@ -92,6 +102,10 @@ async def auto_function_calling_agent():
 
     config = get_azure_openai_config()
     kernel = sk.Kernel()
+
+    query_history = QueryHistory(
+        persist_path=os.path.join(os.path.dirname(__file__), "..", ".query_history.json")
+    )
 
     chat_service = AzureChatCompletion(
         deployment_name=config.deployment_name,
@@ -149,7 +163,7 @@ async def auto_function_calling_agent():
     두 그룹을 비교하여 결론을 내려줘.
     """
 
-    await agentic_loop(kernel, chat_service, history, execution_settings, task1)
+    await agentic_loop(kernel, chat_service, history, execution_settings, task1, query_history)
 
     print("\n" + "=" * 60)
 
@@ -163,7 +177,10 @@ async def auto_function_calling_agent():
     간단한 요약 보고서를 작성해줘.
     """
 
-    await agentic_loop(kernel, chat_service, history2, execution_settings, task2)
+    await agentic_loop(kernel, chat_service, history2, execution_settings, task2, query_history)
+
+    # 세션 종료 시 Query History 출력
+    query_history.display()
 
 
 if __name__ == "__main__":

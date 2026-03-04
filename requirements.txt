@@ -19,6 +19,10 @@ azure-identity>=1.15.0
 # === 환경 변수 관리 (로컬 개발용) ===
 python-dotenv>=1.0.0
 
+# === 웹 검색 HTTP 클라이언트 ===
+# web_search_plugin.py에서 Bing / SerpAPI / DuckDuckGo 호출에 사용
+requests>=2.31.0
+
 # === 데이터 처리 (선택 - 고급 분석 시) ===
 # numpy>=1.24.0
 # pandas>=2.0.0

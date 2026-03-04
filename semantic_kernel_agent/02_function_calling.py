@@ -27,6 +27,7 @@ from semantic_kernel.contents import ChatHistory
 from config.settings import get_azure_openai_config
 from plugins.math_plugin import MathPlugin
 from plugins.web_search_plugin import WebSearchPlugin
+from utils.query_history import QueryHistory
 
 
 async def function_calling_example():
@@ -34,6 +35,10 @@ async def function_calling_example():
 
     config = get_azure_openai_config()
     kernel = sk.Kernel()
+
+    query_history = QueryHistory(
+        persist_path=os.path.join(os.path.dirname(__file__), "..", ".query_history.json")
+    )
 
     # Azure OpenAI 서비스 등록
     chat_service = AzureChatCompletion(
@@ -79,6 +84,7 @@ async def function_calling_example():
     ]
 
     for query in queries:
+        query_history.add(query)             # Query History에 기록
         history.add_user_message(query)
         print(f"User: {query}")
 
@@ -91,6 +97,8 @@ async def function_calling_example():
         history.add_assistant_message(str(response))
         print(f"Assistant: {response}")
         print("-" * 60)
+
+    query_history.display()
 
 
 if __name__ == "__main__":

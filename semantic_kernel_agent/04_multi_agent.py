@@ -32,6 +32,7 @@ from config.settings import get_azure_openai_config
 from plugins.math_plugin import MathPlugin
 from plugins.data_analysis_plugin import DataAnalysisPlugin
 from plugins.web_search_plugin import WebSearchPlugin
+from utils.query_history import QueryHistory
 
 
 def create_agent(
@@ -76,8 +77,11 @@ async def run_agent(
     history: ChatHistory,
     settings: OpenAIChatPromptExecutionSettings,
     task: str,
+    query_history: QueryHistory | None = None,
 ) -> str:
     """에이전트에 작업을 할당하고 결과를 반환합니다"""
+    if query_history is not None:
+        query_history.add(f"[{agent_name}] {task[:80]}{'...' if len(task) > 80 else ''}")
     history.add_user_message(task)
     print(f"\n[{agent_name}] 작업 수행 중...")
 
@@ -104,6 +108,10 @@ async def multi_agent_pipeline():
 
     config = get_azure_openai_config()
     kernel = sk.Kernel()
+
+    query_history = QueryHistory(
+        persist_path=os.path.join(os.path.dirname(__file__), "..", ".query_history.json")
+    )
 
     # 공유 서비스 등록 (모든 에이전트가 동일한 서비스 사용)
     chat_service = AzureChatCompletion(
@@ -172,6 +180,7 @@ async def multi_agent_pipeline():
             "Azure ML과 Semantic Kernel에 대한 정보를 검색하고, "
             "현재 날짜도 확인해서 배경 정보를 요약해줘."
         ),
+        query_history=query_history,
     )
 
     # === Step 2: Analyst가 모델 성능 데이터 분석 ===
@@ -187,6 +196,7 @@ async def multi_agent_pipeline():
             "각 모델의 기초 통계를 계산하고, 이상값이 있는지 확인하고, "
             "두 모델을 비교 분석해줘. 퍼센트로 계산할 때는 Math 도구를 사용해."
         ),
+        query_history=query_history,
     )
 
     # === Step 3: Reporter가 최종 보고서 작성 ===
@@ -205,12 +215,16 @@ async def multi_agent_pipeline():
             f"3. 모델 성능 분석 결과\n"
             f"4. 결론 및 권고사항"
         ),
+        query_history=query_history,
     )
 
     print("\n" + "=" * 60)
     print("=== 최종 보고서 ===")
     print("=" * 60)
     print(final_report)
+
+    # 세션 종료 시 Query History 출력
+    query_history.display()
 
 
 if __name__ == "__main__":

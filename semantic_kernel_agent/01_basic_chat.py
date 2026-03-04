@@ -21,6 +21,7 @@ from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
 from semantic_kernel.contents import ChatHistory
 
 from config.settings import get_azure_openai_config
+from utils.query_history import QueryHistory
 
 
 async def basic_chat_example():
@@ -28,6 +29,11 @@ async def basic_chat_example():
 
     # 1. 설정 로드
     config = get_azure_openai_config()
+
+    # Query History 초기화 (최대 10개 유지, 선택적 파일 영속화)
+    query_history = QueryHistory(
+        persist_path=os.path.join(os.path.dirname(__file__), "..", ".query_history.json")
+    )
 
     # 2. Semantic Kernel 인스턴스 생성
     kernel = sk.Kernel()
@@ -77,6 +83,7 @@ async def basic_chat_example():
     from semantic_kernel.connectors.ai.open_ai import OpenAIChatPromptExecutionSettings
 
     for question in questions:
+        query_history.add(question)          # Query History에 기록
         history.add_user_message(question)
         print(f"User: {question}")
 
@@ -96,6 +103,9 @@ async def basic_chat_example():
         history.add_assistant_message(str(response))
         print(f"Assistant: {response}\n")
         print("-" * 60)
+
+    # 세션 종료 시 Query History 출력
+    query_history.display()
 
 
 if __name__ == "__main__":
