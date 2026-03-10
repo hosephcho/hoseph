@@ -17,6 +17,7 @@ Bing Search 리소스 생성:
 
 import os
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from typing import Annotated
 
@@ -151,6 +152,37 @@ class WebSearchPlugin:
       3. DuckDuckGo       (API Key 없이 자동 fallback)
     """
 
+    def _run_search(self, query: str, max_results: int, market: str = "ko-KR") -> tuple[str, str]:
+        """
+        단일 검색 실행 헬퍼 (batch_search 내부에서 ThreadPoolExecutor로 호출).
+
+        Returns:
+            (query, result_text) 튜플
+        """
+        try:
+            if BING_SEARCH_API_KEY:
+                results = _search_bing(query, max_results, market)
+                engine = "Bing"
+            elif SERPAPI_API_KEY:
+                results = _search_serpapi(query, max_results, market)
+                engine = "SerpAPI"
+            else:
+                results = _search_duckduckgo(query, max_results)
+                engine = "DuckDuckGo"
+        except Exception as e:
+            return query, f"검색 실패: {str(e)}"
+
+        if not results:
+            return query, f"'{query}' 검색 결과 없음"
+
+        lines = [f"[{engine}] '{query}' 검색 결과:"]
+        for i, r in enumerate(results, 1):
+            lines.append(f"  {i}. {r['title']}")
+            if r.get("url"):
+                lines.append(f"     URL: {r['url']}")
+            lines.append(f"     {r['snippet']}")
+        return query, "\n".join(lines)
+
     @kernel_function(
         name="search",
         description=(
@@ -197,6 +229,65 @@ class WebSearchPlugin:
             if r.get("url"):
                 lines.append(f"     URL: {r['url']}")
             lines.append(f"     {r['snippet']}")
+            lines.append("")
+
+        return "\n".join(lines)
+
+    @kernel_function(
+        name="batch_search",
+        description=(
+            "여러 항목을 한 번에 병렬로 검색합니다. "
+            "검색 결과에서 제품명, 기업명, 기술명, 인물명 등 "
+            "여러 항목이 나와 각각 상세 조사가 필요할 때 사용하세요. "
+            "단일 검색보다 훨씬 빠릅니다. "
+            "예시: 회의록에서 '갤럭시 S25', 'HBM3E', 'Exynos 2500'이 언급되었다면 "
+            "queries=[\"갤럭시 S25\", \"HBM3E\", \"Exynos 2500\"] 로 한 번에 조사하세요."
+        ),
+    )
+    def batch_search(
+        self,
+        queries: Annotated[
+            str,
+            "검색할 항목 목록. JSON 배열 형식 권장: [\"항목1\", \"항목2\", \"항목3\"]. "
+            "또는 쉼표 구분: \"항목1, 항목2, 항목3\"",
+        ],
+        max_results_per_query: Annotated[int, "항목당 최대 결과 수 (기본값: 3, 최대: 5)"] = 3,
+        market: Annotated[str, "검색 언어/지역 코드 (기본값: ko-KR)"] = "ko-KR",
+    ) -> str:
+        """여러 검색어를 ThreadPoolExecutor로 병렬 실행하고 통합 결과를 반환합니다."""
+        # 입력 파싱 (JSON 배열 또는 쉼표 구분 문자열)
+        try:
+            query_list = json.loads(queries)
+            if not isinstance(query_list, list):
+                query_list = [str(query_list)]
+        except json.JSONDecodeError:
+            query_list = [q.strip() for q in queries.split(",") if q.strip()]
+
+        if not query_list:
+            return "검색할 항목이 없습니다. queries 파라미터를 확인하세요."
+
+        max_results_per_query = min(max(1, max_results_per_query), 5)
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+        ordered_results: dict[str, str] = {}
+
+        # 병렬 검색 실행 (최대 5개 동시)
+        with ThreadPoolExecutor(max_workers=min(len(query_list), 5)) as executor:
+            future_to_query = {
+                executor.submit(self._run_search, q, max_results_per_query, market): q
+                for q in query_list
+            }
+            for future in as_completed(future_to_query):
+                q, result_text = future.result()
+                ordered_results[q] = result_text
+
+        # 입력 순서대로 정렬하여 출력
+        lines = [
+            f"병렬 검색 완료 ({timestamp}) - 총 {len(query_list)}개 항목\n",
+            "=" * 50,
+        ]
+        for q in query_list:
+            lines.append(f"\n### {q}")
+            lines.append(ordered_results.get(q, "결과 없음"))
             lines.append("")
 
         return "\n".join(lines)
