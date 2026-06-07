@@ -29,3 +29,9 @@ requests>=2.31.0
 
 # === 비동기 지원 ===
 aiohttp>=3.9.0
+
+# === 석유화학 BI Agent 추가 패키지 ===
+feedparser>=6.0.10          # RSS 피드 파싱
+beautifulsoup4>=4.12.0      # 기사 본문 스크래핑
+lxml>=4.9.0                 # BeautifulSoup 파서
+azure-storage-blob>=12.19.0 # Azure Blob Storage 업로드 (선택)

@@ -49,3 +49,14 @@ def get_azure_openai_config() -> AzureOpenAIConfig:
         api_version=api_version,
         api_key=api_key,
     )
+
+
+def get_petrochem_config() -> dict:
+    """석유화학 BI Agent 관련 설정을 로드합니다."""
+    return {
+        "output_dir": os.environ.get("PETROCHEM_OUTPUT_DIR", "output/reports"),
+        "price_cache_dir": os.environ.get("PETROCHEM_PRICE_CACHE_DIR", "data/price_cache"),
+        "spglobal_api_key": os.environ.get("SPGLOBAL_API_KEY", ""),
+        "icis_api_key": os.environ.get("ICIS_API_KEY", ""),
+        "azure_storage_conn_str": os.environ.get("AZURE_STORAGE_CONNECTION_STRING", ""),
+    }
