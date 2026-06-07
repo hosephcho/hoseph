@@ -27,12 +27,18 @@ try:
 except ImportError:
     pass
 
-# 캐시 디렉토리 (환경변수 > 기본값)
-_DEFAULT_CACHE_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "data", "price_cache",
-)
-PRICE_CACHE_DIR = os.environ.get("PETROCHEM_PRICE_CACHE_DIR", _DEFAULT_CACHE_DIR)
+# 캐시 디렉토리 (환경변수 > settings._BASE_DIR 기준 기본값)
+try:
+    from config.settings import get_petrochem_config as _get_cfg
+    PRICE_CACHE_DIR = os.environ.get(
+        "PETROCHEM_PRICE_CACHE_DIR",
+        _get_cfg()["price_cache_dir"],
+    )
+except Exception:
+    PRICE_CACHE_DIR = os.environ.get(
+        "PETROCHEM_PRICE_CACHE_DIR",
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "price_cache"),
+    )
 
 # 가격 추출 정규식: "$850", "850 USD/ton", "USD 1,050/mt" 등
 _PRICE_PATTERN = re.compile(

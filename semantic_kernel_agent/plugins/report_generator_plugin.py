@@ -25,11 +25,18 @@ try:
 except ImportError:
     pass
 
-_DEFAULT_OUTPUT_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "output", "reports",
-)
-REPORTS_DIR = os.environ.get("PETROCHEM_OUTPUT_DIR", _DEFAULT_OUTPUT_DIR)
+# 보고서 디렉토리 (환경변수 > settings._BASE_DIR 기준 기본값)
+try:
+    from config.settings import get_petrochem_config as _get_cfg
+    REPORTS_DIR = os.environ.get(
+        "PETROCHEM_OUTPUT_DIR",
+        _get_cfg()["output_dir"],
+    )
+except Exception:
+    REPORTS_DIR = os.environ.get(
+        "PETROCHEM_OUTPUT_DIR",
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output", "reports"),
+    )
 
 # Azure Blob Storage (선택)
 _AZURE_CONN_STR = os.environ.get("AZURE_STORAGE_CONNECTION_STRING", "")

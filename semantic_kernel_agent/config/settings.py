@@ -7,7 +7,21 @@ Azure ML 환경에서는 두 가지 인증 방식을 지원합니다:
 """
 
 import os
+import sys
 from dataclasses import dataclass
+
+# ---------------------------------------------------------------------------
+# 기본 베이스 경로
+#   Windows 로컬 실행: C:\Users\hosep\OneDrive\문서\Claude
+#   Linux / Azure ML:  프로젝트 루트 기준 상대 경로
+# ---------------------------------------------------------------------------
+if sys.platform == "win32":
+    _BASE_DIR = os.path.join(
+        os.path.expanduser("~"), "OneDrive", "문서", "Claude"
+    )
+else:
+    # 이 파일 기준 두 단계 위 = 프로젝트 루트
+    _BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 try:
     from dotenv import load_dotenv
@@ -52,11 +66,23 @@ def get_azure_openai_config() -> AzureOpenAIConfig:
 
 
 def get_petrochem_config() -> dict:
-    """석유화학 BI Agent 관련 설정을 로드합니다."""
+    """
+    석유화학 BI Agent 관련 설정을 로드합니다.
+
+    기본 경로:
+      Windows: C:\\Users\\hosep\\OneDrive\\문서\\Claude\\output\\reports
+      Linux  : <프로젝트 루트>/output/reports
+
+    환경변수(PETROCHEM_OUTPUT_DIR, PETROCHEM_PRICE_CACHE_DIR)로 덮어쓸 수 있습니다.
+    """
+    default_output_dir = os.path.join(_BASE_DIR, "output", "reports")
+    default_cache_dir = os.path.join(_BASE_DIR, "data", "price_cache")
+
     return {
-        "output_dir": os.environ.get("PETROCHEM_OUTPUT_DIR", "output/reports"),
-        "price_cache_dir": os.environ.get("PETROCHEM_PRICE_CACHE_DIR", "data/price_cache"),
+        "output_dir": os.environ.get("PETROCHEM_OUTPUT_DIR", default_output_dir),
+        "price_cache_dir": os.environ.get("PETROCHEM_PRICE_CACHE_DIR", default_cache_dir),
         "spglobal_api_key": os.environ.get("SPGLOBAL_API_KEY", ""),
         "icis_api_key": os.environ.get("ICIS_API_KEY", ""),
         "azure_storage_conn_str": os.environ.get("AZURE_STORAGE_CONNECTION_STRING", ""),
+        "base_dir": _BASE_DIR,
     }
