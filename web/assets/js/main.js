@@ -1,5 +1,5 @@
 /* =========================================================
-   재택의료저널 — 공용 스크립트
+   재택의료NEWS — 공용 스크립트
    - 다크/라이트 테마 토글 (localStorage 저장)
    - 스크롤 시 마스트헤드 축소
    - 스크롤 진입 애니메이션
@@ -62,24 +62,27 @@
 
   /* ---------- 마스트헤드 ---------- */
 
-  function initMasthead() {
-    var masthead = document.querySelector('.masthead');
-    if (!masthead) return;
+  var mastheadBound = false;
 
+  function initMasthead() {
     var threshold = 90;
     var ticking = false;
 
     function update() {
-      masthead.classList.toggle('is-stuck', window.scrollY > threshold);
+      var masthead = document.querySelector('.masthead');
+      if (masthead) masthead.classList.toggle('is-stuck', window.scrollY > threshold);
       ticking = false;
     }
 
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
+    if (!mastheadBound) {
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+      mastheadBound = true;
+    }
 
     update();
   }
@@ -111,14 +114,17 @@
 
   /* ---------- 읽기 진행률 ---------- */
 
-  function initProgress() {
-    var bar = document.querySelector('.progress');
-    var body = document.querySelector('.article-body');
-    if (!bar || !body) return;
+  var progressBound = false;
 
+  function initProgress() {
     var ticking = false;
 
     function update() {
+      var bar = document.querySelector('.progress');
+      var body = document.querySelector('.article-body');
+      if (!bar) return;
+      if (!body) { bar.style.width = '0'; return; }
+
       var rect = body.getBoundingClientRect();
       var total = rect.height - window.innerHeight;
       var scrolled = -rect.top;
@@ -127,14 +133,17 @@
       ticking = false;
     }
 
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
+    if (!progressBound) {
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      progressBound = true;
+    }
 
-    window.addEventListener('resize', update);
     update();
   }
 
@@ -172,10 +181,11 @@
       });
     });
 
-    // ?cat=policy 처럼 주소로 들어온 카테고리를 초기 선택값으로 사용
+    // ?cat=hot 처럼 주소로 들어온 카테고리를 초기 선택값으로 사용
+    // (단일 파일 미리보기에서는 라우터가 window.__hcjCat 으로 넘긴다)
     var initial = 'all';
     try {
-      var cat = new URLSearchParams(window.location.search).get('cat');
+      var cat = window.__hcjCat || new URLSearchParams(window.location.search).get('cat');
       if (cat && known[cat]) initial = cat;
     } catch (e) { /* ignore */ }
 
@@ -215,7 +225,7 @@
         event.preventDefault();
         var note = form.querySelector('[data-subscribe-note]');
         if (note) {
-          note.textContent = '초안 데모입니다. 실제 구독 연동 시 이 자리에서 처리 결과를 안내합니다.';
+          note.textContent = '초안 데모입니다. 실제 서비스 연동 시 이 자리에서 처리 결과를 안내합니다.';
           note.style.color = 'var(--brass)';
         }
         form.reset();
@@ -228,7 +238,7 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  ready(function () {
+  function initAll() {
     initTheme();
     initMasthead();
     initReveal();
@@ -236,5 +246,10 @@
     initFilters();
     initDate();
     initSubscribe();
-  });
+  }
+
+  ready(initAll);
+
+  // 단일 파일 미리보기(preview.html)에서 화면 전환 후 다시 호출한다.
+  window.HCJ = { init: initAll };
 })();
