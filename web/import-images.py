@@ -31,6 +31,8 @@ import urllib.request
 
 PAGES = ['index.html', 'news.html', 'article.html', 'local.html', 'qna.html', 'about.html']
 IMG_DIR = 'assets/img'
+MAX_W = 1400          # 원본 PNG 은 1MB 를 넘는다. 화면 폭에 맞춰 줄인다.
+JPEG_Q = 82
 
 PLATE_RE = re.compile(
     r'<div class="(plate[^"]*?)\s+(ratio-[0-9x]+)"\s*>(.*?)</div>'
@@ -71,8 +73,36 @@ def download(url, dest):
     return len(data)
 
 
+def shrink(path, keep_alpha=False, crop=None):
+    """폭을 MAX_W 로 줄이고, 사진이면 JPEG 로 다시 저장한다. 새 경로를 돌려준다.
+
+    crop 은 원본 좌표계의 (x, y, w, h) 이며, 배너에서 인물만 오려낼 때 쓴다.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        return path
+    with Image.open(path) as im:
+        im.load()
+        if crop:
+            x, y, w, h = crop
+            im = im.crop((x, y, x + w, y + h))
+        if im.width > MAX_W:
+            h = round(im.height * MAX_W / im.width)
+            im = im.resize((MAX_W, h), Image.LANCZOS)
+        if keep_alpha:
+            im.save(path, optimize=True)
+            return path
+        out = os.path.splitext(path)[0] + '.jpg'
+        im.convert('RGB').save(out, 'JPEG', quality=JPEG_Q, optimize=True, progressive=True)
+    if out != path:
+        os.remove(path)
+    return out
+
+
 def apply_map(tsv_path):
     mapping = {}
+    direct = []
     for line in io.open(tsv_path, encoding='utf-8'):
         line = line.strip()
         if not line or line.startswith('#'):
@@ -83,9 +113,26 @@ def apply_map(tsv_path):
             continue
         slot, url = parts[0].strip(), parts[1].strip()
         alt = parts[2].strip() if len(parts) > 2 else ''
+        if slot.startswith('@'):
+            # @파일명 — 자리표시자 교체 없이 assets/img 로 바로 내려받는다.
+            # 세 번째 열에 crop=x,y,w,h 를 쓰면 원본에서 그 영역만 잘라 쓴다.
+            crop = None
+            if alt.startswith('crop='):
+                crop = tuple(int(v) for v in alt[5:].split(','))
+            direct.append((slot[1:], url, crop))
+            continue
         mapping[slot] = (url, alt)
 
     os.makedirs(IMG_DIR, exist_ok=True)
+
+    for fname, url, crop in direct:
+        dest = os.path.join(IMG_DIR, fname)
+        try:
+            download(url, dest)
+            shrink(dest, keep_alpha=dest.lower().endswith('.png'), crop=crop)
+            print('  %-14s %6.1f KB  %s' % ('@' + fname, os.path.getsize(dest) / 1024, fname))
+        except Exception as exc:                          # noqa: BLE001
+            print('실패 @%-13s %s' % (fname, exc))
 
     for page in PAGES:
         html = io.open(page, encoding='utf-8').read()
@@ -104,7 +151,10 @@ def apply_map(tsv_path):
             dest = os.path.join(IMG_DIR, fname)
 
             try:
-                size = download(url, dest)
+                download(url, dest)
+                dest = shrink(dest)
+                fname = os.path.basename(dest)
+                size = os.path.getsize(dest)
             except Exception as exc:                      # noqa: BLE001
                 print('실패 %-14s %s' % (name, exc))
                 continue

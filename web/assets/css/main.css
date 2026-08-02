@@ -750,7 +750,18 @@ p { margin: 0; }
   position: absolute; inset: 0;
   background: radial-gradient(70% 60% at 50% 22%, rgba(255,255,255,.24), transparent 70%);
 }
+/* 실제 사진이 들어오면 <img class="columnist__photo"> 로 바뀐다 */
+img.columnist__photo { width: 62px; object-fit: cover; object-position: top center; }
+img.columnist__photo::after { content: none; }
 .columnist__name { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.02em; }
+.columnist__org {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.6875rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  word-break: keep-all;
+}
 .columnist__title {
   font-family: var(--serif);
   font-size: 1.0625rem;
@@ -786,6 +797,12 @@ p { margin: 0; }
   color: var(--ink-2);
   word-break: keep-all;
   transition: color 0.25s var(--ease);
+  /* 원문 제목이 길어 두 줄에서 자른다 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 .ranklist a:hover { color: var(--teal); }
 
@@ -912,6 +929,9 @@ p { margin: 0; }
   transition: border-color 0.25s var(--ease);
 }
 .partner:hover { border-color: var(--line-strong); }
+/* 제휴사 배너는 상대 기관의 자산이므로 원본 이미지를 그대로 쓴다 */
+.partner:has(.partner__banner) { padding: 0; overflow: hidden; }
+.partner__banner { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 460; object-fit: cover; }
 .partner__tag { font-size: 0.6875rem; color: var(--muted); letter-spacing: 0.02em; }
 .partner__name { font-family: var(--serif); font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.025em; }
 .partner__info { font-size: 0.75rem; color: var(--muted); }
