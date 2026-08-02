@@ -2,38 +2,59 @@
    재택의료NEWS — 집으로 가는, 집에서 하는
    디자인 토큰 & 전역 스타일
    ---------------------------------------------------------
-   원본의 청록 브랜드 컬러를 딥 틸로 정제하고, 난립하던
-   배경색(남색·연녹·베이지)을 3단계 서피스로 정리했습니다.
+   원본의 청록 브랜드 컬러를 파스텔 계열로 낮춰 세이지 틸 +
+   클레이 브라운으로 재구성했습니다. 라이트와 다크는 서로의
+   반전이 아니라 각자의 팔레트를 갖습니다.
+     라이트 — 웜 아이보리 지면 · 세이지 틸 · 클레이 브라운
+     다크   — 에스프레소 지면 · 더스티 민트 · 소프트 캐러멜
    ========================================================= */
 
 :root {
   color-scheme: light;
 
+  /* --- 라이트 테마: 세이지 틸 + 클레이 브라운을 웜 아이보리 위에 --- */
+
   /* 서피스 */
-  --paper:        #faf9f6;   /* 기본 지면 */
-  --paper-2:      #f1f0ea;   /* 교차 섹션 (원본 연녹색 자리) */
-  --paper-3:      #e7e5db;
-  --surface-ink:  #0d1f1d;   /* 헤드라인 밴드 (원본 남색 자리) */
-  --surface-warm: #f6f1e6;   /* CTA 밴드 (원본 베이지 자리) */
+  --paper:        #faf8f4;   /* 기본 지면 (웜 아이보리) */
+  --paper-2:      #f1ede6;   /* 교차 섹션 (웜 샌드) */
+  --paper-3:      #e6e0d6;
+  --surface-ink:  #2c4540;   /* 헤드라인 밴드 (딥 세이지 틸) */
+  --surface-warm: #f3ece2;   /* CTA 밴드 (웜 베이지) */
+  --surface-mint: #e9f0ed;   /* 검색 서비스 밴드 (페일 민트) */
 
   /* 잉크 */
-  --ink:          #14211f;
-  --ink-2:        #33423f;
-  --muted:        #6d7471;
-  --on-ink:       #f2f0e9;
-  --on-ink-muted: #a2a89f;
+  --ink:          #241f1b;   /* 웜 니어블랙 */
+  --ink-2:        #4a423a;
+  --muted:        #786e64;
+  --on-ink:       #f2efe8;
+  --on-ink-muted: #b7c3be;   /* 세이지 밴드 위에서 읽히도록 틸 기운 */
 
   /* 브랜드 */
-  --teal:         #0e5c57;
-  --teal-2:       #157e76;
-  --teal-soft:    rgba(14, 92, 87, 0.09);
-  --brass:        #a8762e;
-  --brass-2:      #c9a05c;
+  --teal:         #3f7a70;   /* 세이지 틸 */
+  --teal-2:       #5e9a8f;
+  --teal-soft:    rgba(63, 122, 112, 0.1);
+  --on-teal:      #ffffff;   /* 틸 위에 얹는 글자색 */
+  --brass:        #8c6552;   /* 클레이 브라운 (기존 브라스 자리) */
+  --brass-2:      #b08d77;
+
+  /* 이미지 플레이트 (파스텔) */
+  --plate-1:      #b9cfc8;  --plate-2:      #8fb3a9;
+  --plate-warm-1: #e0cbb6;  --plate-warm-2: #c2a186;
+  --plate-sage-1: #c8d4c3;  --plate-sage-2: #9db49b;
+  --plate-clay-1: #ddc7bc;  --plate-clay-2: #b99788;
+  --plate-slate-1:#c3cdcd;  --plate-slate-2:#94a6a8;
+  --plate-ink:    #2a2622;
+  --plate-scrim:  rgba(255, 255, 255, 0.52);
+
+  /* 상담 버튼 (카카오·전화) — 원색을 파스텔로 낮춤 */
+  --kakao:        #f3dd6a;
+  --call:         #5f9070;
+  --on-call:      #ffffff;
 
   /* 라인 */
-  --line:         rgba(20, 33, 31, 0.13);
-  --line-strong:  rgba(20, 33, 31, 0.3);
-  --line-on-ink:  rgba(242, 240, 233, 0.18);
+  --line:         rgba(36, 31, 27, 0.12);
+  --line-strong:  rgba(36, 31, 27, 0.26);
+  --line-on-ink:  rgba(242, 239, 232, 0.2);
 
   /* 타이포 */
   --serif: "Nanum Myeongjo", "AppleMyungjo", "Noto Serif KR", "Apple SD Gothic Neo",
@@ -51,48 +72,88 @@
 
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
-    color-scheme: dark;
-    --paper:        #0f1413;
-    --paper-2:      #161d1c;
-    --paper-3:      #1f2827;
-    --surface-ink:  #070c0b;
-    --surface-warm: #191712;
-    --ink:          #f0eee7;
-    --ink-2:        #d2cfc6;
-    --muted:        #8f958f;
-    --on-ink:       #f0eee7;
-    --on-ink-muted: #979d95;
-    --teal:         #4aa79e;
-    --teal-2:       #63bdb3;
-    --teal-soft:    rgba(74, 167, 158, 0.14);
-    --brass:        #d3ab6a;
-    --brass-2:      #e0be86;
-    --line:         rgba(240, 238, 231, 0.14);
-    --line-strong:  rgba(240, 238, 231, 0.3);
-    --line-on-ink:  rgba(240, 238, 231, 0.16);
+      color-scheme: dark;
+
+      /* --- 다크 테마: 라이트의 반전이 아니라 자체 팔레트 ---
+         에스프레소 브라운 지면 위에 더스티 민트 + 소프트 캐러멜 --- */
+      --paper:        #191512;
+      --paper-2:      #211c18;
+      --paper-3:      #2b251f;
+      --surface-ink:  #0f0c0a;
+      --surface-warm: #201911;
+      --surface-mint: #16201d;
+
+      --ink:          #f1ece3;
+      --ink-2:        #d6cec2;
+      --muted:        #9a9086;
+      --on-ink:       #f1ece3;
+      --on-ink-muted: #9e958a;
+
+      --teal:         #7fbdb1;
+      --teal-2:       #9bd0c5;
+      --teal-soft:    rgba(127, 189, 177, 0.14);
+      --on-teal:      #10201c;
+      --brass:        #d3a88c;
+      --brass-2:      #e2bfa6;
+
+      --plate-1:      #6c8c85;  --plate-2:      #4d6b64;
+      --plate-warm-1: #9a7f68;    --plate-warm-2: #745944;
+      --plate-sage-1: #789074;  --plate-sage-2: #566b55;
+      --plate-clay-1: #93705f;  --plate-clay-2: #6d5245;
+      --plate-slate-1:#75858a;  --plate-slate-2:#4f6165;
+      --plate-ink:    #f2ede5;
+      --plate-scrim:  rgba(0, 0, 0, 0.42);
+
+      --kakao:        #d8c25a;
+      --call:         #6f9f80;
+      --on-call:      #0f1b13;
+
+      --line:         rgba(241, 236, 227, 0.13);
+      --line-strong:  rgba(241, 236, 227, 0.28);
+      --line-on-ink:  rgba(241, 236, 227, 0.16);
   }
 }
 
 :root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper:        #0f1413;
-  --paper-2:      #161d1c;
-  --paper-3:      #1f2827;
-  --surface-ink:  #070c0b;
-  --surface-warm: #191712;
-  --ink:          #f0eee7;
-  --ink-2:        #d2cfc6;
-  --muted:        #8f958f;
-  --on-ink:       #f0eee7;
-  --on-ink-muted: #979d95;
-  --teal:         #4aa79e;
-  --teal-2:       #63bdb3;
-  --teal-soft:    rgba(74, 167, 158, 0.14);
-  --brass:        #d3ab6a;
-  --brass-2:      #e0be86;
-  --line:         rgba(240, 238, 231, 0.14);
-  --line-strong:  rgba(240, 238, 231, 0.3);
-  --line-on-ink:  rgba(240, 238, 231, 0.16);
+    color-scheme: dark;
+
+    /* --- 다크 테마: 라이트의 반전이 아니라 자체 팔레트 ---
+       에스프레소 브라운 지면 위에 더스티 민트 + 소프트 캐러멜 --- */
+    --paper:        #191512;
+    --paper-2:      #211c18;
+    --paper-3:      #2b251f;
+    --surface-ink:  #0f0c0a;
+    --surface-warm: #201911;
+    --surface-mint: #16201d;
+
+    --ink:          #f1ece3;
+    --ink-2:        #d6cec2;
+    --muted:        #9a9086;
+    --on-ink:       #f1ece3;
+    --on-ink-muted: #9e958a;
+
+    --teal:         #7fbdb1;
+    --teal-2:       #9bd0c5;
+    --teal-soft:    rgba(127, 189, 177, 0.14);
+    --on-teal:      #10201c;
+    --brass:        #d3a88c;
+    --brass-2:      #e2bfa6;
+
+    --plate-1:      #6c8c85;  --plate-2:      #4d6b64;
+    --plate-warm-1: #9a7f68;    --plate-warm-2: #745944;
+    --plate-sage-1: #789074;  --plate-sage-2: #566b55;
+    --plate-clay-1: #93705f;  --plate-clay-2: #6d5245;
+    --plate-slate-1:#75858a;  --plate-slate-2:#4f6165;
+    --plate-ink:    #f2ede5;
+    --plate-scrim:  rgba(0, 0, 0, 0.42);
+
+    --kakao:        #d8c25a;
+    --call:         #6f9f80;
+    --on-call:      #0f1b13;
+
+    --line:         rgba(241, 236, 227, 0.13);
+    --line-strong:  rgba(241, 236, 227, 0.28);
+    --line-on-ink:  rgba(241, 236, 227, 0.16);
 }
 
 /* ---------- 리셋 ---------- */
@@ -139,7 +200,7 @@ h1, h2, h3, h4 {
 
 p { margin: 0; }
 
-::selection { background: var(--teal); color: #fff; }
+::selection { background: var(--teal); color: var(--on-teal); }
 
 :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
 
@@ -271,7 +332,7 @@ p { margin: 0; }
   color: var(--muted);
   transition: all 0.25s var(--ease);
 }
-.social a:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+.social a:hover { background: var(--teal); border-color: var(--teal); color: var(--on-teal); }
 
 .theme-toggle {
   background: none;
@@ -315,7 +376,7 @@ p { margin: 0; }
 }
 .search input::placeholder { color: var(--muted); }
 .search button {
-  border: 0; background: var(--teal); color: #fff;
+  border: 0; background: var(--teal); color: var(--on-teal);
   width: 28px; height: 28px; border-radius: 50%;
   display: grid; place-items: center;
   cursor: pointer; font-size: 0.75rem;
@@ -350,7 +411,7 @@ p { margin: 0; }
   align-items: center;
   gap: 0.5rem;
   background: var(--teal);
-  color: #fff;
+  color: var(--on-teal);
   padding: 0.45rem 0.9rem;
   border-radius: var(--radius);
   font-family: var(--sans);
@@ -430,7 +491,7 @@ p { margin: 0; }
 .plate {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(145deg, #16302c 0%, #275049 48%, #3f6f63 100%);
+  background: linear-gradient(145deg, var(--plate-1) 0%, var(--plate-2) 100%);
   border-radius: var(--radius);
   isolation: isolate;
 }
@@ -438,23 +499,23 @@ p { margin: 0; }
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(120% 90% at 22% 0%, rgba(255, 255, 255, 0.17), transparent 62%),
-    repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 8px);
+    radial-gradient(120% 90% at 22% 0%, rgba(255, 255, 255, 0.3), transparent 62%),
+    repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 8px);
   mix-blend-mode: soft-light;
 }
-.plate--warm  { background: linear-gradient(145deg, #34281a 0%, #6b5227 50%, #a8762e 100%); }
-.plate--sage  { background: linear-gradient(145deg, #1f2a22 0%, #3b4d3d 50%, #61775f 100%); }
-.plate--clay  { background: linear-gradient(145deg, #2c221f 0%, #4f3934 50%, #7d5b4e 100%); }
-.plate--slate { background: linear-gradient(145deg, #171d22 0%, #323d46 50%, #5a6672 100%); }
+.plate--warm  { background: linear-gradient(145deg, var(--plate-warm-1),  var(--plate-warm-2)); }
+.plate--sage  { background: linear-gradient(145deg, var(--plate-sage-1),  var(--plate-sage-2)); }
+.plate--clay  { background: linear-gradient(145deg, var(--plate-clay-1),  var(--plate-clay-2)); }
+.plate--slate { background: linear-gradient(145deg, var(--plate-slate-1), var(--plate-slate-2)); }
 
 .plate__caption {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 1rem;
-  color: rgba(255, 255, 255, 0.76);
+  color: var(--plate-ink);
   font-size: 0.625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  background: linear-gradient(to top, var(--plate-scrim), transparent);
   z-index: 1;
 }
 
@@ -627,7 +688,7 @@ p { margin: 0; }
   flex: 0 0 62px;
   height: 62px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #274b45, #4a7a6f);
+  background: linear-gradient(145deg, var(--plate-1), var(--plate-2));
   position: relative;
   overflow: hidden;
 }
@@ -766,7 +827,7 @@ p { margin: 0; }
   letter-spacing: -0.01em;
   border: 1px solid var(--teal);
   background: var(--teal);
-  color: #fff;
+  color: var(--on-teal);
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.25s var(--ease);
@@ -777,10 +838,10 @@ p { margin: 0; }
 .btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .btn--ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-.btn--kakao { background: #fee500; border-color: #fee500; color: #191600; }
+.btn--kakao { background: var(--kakao); border-color: var(--kakao); color: #241f00; }
 .btn--kakao:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
-.btn--call { background: #14a15b; border-color: #14a15b; color: #fff; }
+.btn--call { background: var(--call); border-color: var(--call); color: var(--on-call); }
 .btn--call:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
 /* ---------- 제휴 배너 ---------- */
@@ -945,7 +1006,7 @@ figcaption {
   border-radius: 999px;
   transition: all 0.25s var(--ease);
 }
-.tag-list a:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+.tag-list a:hover { background: var(--teal); color: var(--on-teal); border-color: var(--teal); }
 
 .progress {
   position: fixed; top: 0; left: 0;
@@ -991,7 +1052,7 @@ figcaption {
   transition: all 0.25s var(--ease);
 }
 .chip:hover { border-color: var(--teal); color: var(--teal); }
-.chip[aria-pressed="true"] { background: var(--teal); color: #fff; border-color: var(--teal); }
+.chip[aria-pressed="true"] { background: var(--teal); color: var(--on-teal); border-color: var(--teal); }
 
 .list-divider > * + * {
   border-top: 1px solid var(--line);
