@@ -48,6 +48,14 @@
   --plate-ink:    #2a2622;
   --plate-scrim:  rgba(255, 255, 255, 0.52);
 
+  /* 브랜드 로고 칩 — 단색 블록 대신 지면에 녹는 틴트 */
+  --chip-bg:        rgba(63, 122, 112, 0.12);
+  --chip-line:      rgba(63, 122, 112, 0.3);
+  --chip-ink:       #2b5b52;
+  --chip-ink-bg:    rgba(242, 239, 232, 0.09);   /* 어두운 밴드 위 */
+  --chip-ink-line:  rgba(242, 239, 232, 0.2);
+  --chip-ink-ink:   #dbe8e3;
+
   /* 상담 버튼 (카카오·전화) — 원색을 파스텔로 낮춤 */
   --kakao:        #f3dd6a;
   --call:         #5f9070;
@@ -106,6 +114,13 @@
       --plate-ink:    #f2ede5;
       --plate-scrim:  rgba(0, 0, 0, 0.42);
 
+      --chip-bg:        rgba(127, 189, 177, 0.14);
+      --chip-line:      rgba(127, 189, 177, 0.32);
+      --chip-ink:       #9ed3c8;
+      --chip-ink-bg:    rgba(241, 236, 227, 0.08);
+      --chip-ink-line:  rgba(241, 236, 227, 0.16);
+      --chip-ink-ink:   #a9cfc6;
+
       --kakao:        #d8c25a;
       --call:         #6f9f80;
       --on-call:      #0f1b13;
@@ -148,6 +163,13 @@
     --plate-slate-1:#75858a;  --plate-slate-2:#4f6165;
     --plate-ink:    #f2ede5;
     --plate-scrim:  rgba(0, 0, 0, 0.42);
+
+    --chip-bg:        rgba(127, 189, 177, 0.14);
+    --chip-line:      rgba(127, 189, 177, 0.32);
+    --chip-ink:       #9ed3c8;
+    --chip-ink-bg:    rgba(241, 236, 227, 0.08);
+    --chip-ink-line:  rgba(241, 236, 227, 0.16);
+    --chip-ink-ink:   #a9cfc6;
 
     --kakao:        #d8c25a;
     --call:         #6f9f80;
@@ -412,9 +434,10 @@ p { margin: 0; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--teal);
-  color: var(--on-teal);
-  padding: 0.45rem 0.9rem;
+  background: var(--chip-bg);
+  color: var(--chip-ink);
+  border: 1px solid var(--chip-line);
+  padding: 0.42rem 0.88rem;
   border-radius: var(--radius);
   font-family: var(--sans);
   font-size: clamp(1.0625rem, 2.4vw, 1.5rem);
@@ -884,7 +907,11 @@ p { margin: 0; }
   border-bottom: 1px solid var(--line-on-ink);
 }
 
-.footer .brand__mark { background: var(--teal-2); }
+.footer .brand__mark {
+  background: var(--chip-ink-bg);
+  border-color: var(--chip-ink-line);
+  color: var(--chip-ink-ink);
+}
 .footer__slogan { color: var(--on-ink); font-family: var(--serif); margin-top: 0.9rem; }
 
 .footer__legal { line-height: 2; color: var(--on-ink-muted); word-break: keep-all; }
