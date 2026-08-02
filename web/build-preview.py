@@ -8,11 +8,16 @@
 를 다시 실행하면 preview.html이 갱신된다.
 """
 
+import base64
 import io
 import json
+import mimetypes
 import os
+import re
 
 PAGES = ['index', 'news', 'article', 'local', 'qna', 'about']
+
+IMG_SRC_RE = re.compile(r'src="(assets/img/[^"]+)"')
 
 TITLES = {
     'index':   '재택의료NEWS — 집으로 가는, 집에서 하는',
@@ -95,6 +100,22 @@ ROUTER = r"""
 """
 
 
+def inline_images(html):
+    """assets/img 상대경로를 base64 data URI로 바꿔, preview.html 하나만
+    떼어 내도 사진이 그대로 보이게 한다."""
+    cache = {}
+
+    def sub(m):
+        path = m.group(1)
+        if path not in cache:
+            data = io.open(path, 'rb').read()
+            mime = mimetypes.guess_type(path)[0] or 'application/octet-stream'
+            cache[path] = 'data:%s;base64,%s' % (mime, base64.b64encode(data).decode('ascii'))
+        return 'src="%s"' % cache[path]
+
+    return IMG_SRC_RE.sub(sub, html)
+
+
 def main():
     here = os.path.dirname(os.path.abspath(__file__))
     os.chdir(here)
@@ -107,7 +128,7 @@ def main():
         src = io.open('%s.html' % name, encoding='utf-8').read()
         start = src.index('<body>') + len('<body>')
         end = src.index('<script src="assets/js/main.js">')
-        views[name] = src[start:end].strip()
+        views[name] = inline_images(src[start:end].strip())
 
     router = (ROUTER
               .replace('__VIEWS__', json.dumps(views, ensure_ascii=False))
