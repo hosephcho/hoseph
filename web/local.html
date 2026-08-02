@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>우리동네재택의료 — 재택의료NEWS</title>
+<meta name="description" content="재택의료센터·가정간호센터·방문진료 병의원을 지역별로 검색하세요.">
+<meta name="theme-color" content="#0e5c57">
+<link rel="stylesheet" href="assets/css/main.css">
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<!-- ================= 상단 유틸 ================= -->
+<div class="topbar">
+  <div class="wrap topbar__inner">
+    <span class="topbar__date" data-today>2026.<strong>08.02</strong> 일요일</span>
+    <div class="topbar__links">
+      <a href="about.html#tip">기사제보</a><span class="sep">|</span>
+      <a href="about.html">회사소개</a><span class="sep">|</span>
+      <a href="about.html#member">로그인</a><span class="sep">|</span>
+      <a href="about.html#member">회원가입</a>
+      <span class="social">
+        <a href="about.html" aria-label="블로그">B</a>
+        <a href="about.html" aria-label="네이버 포스트">N</a>
+        <a href="about.html" aria-label="유튜브">▶</a>
+      </span>
+      <button class="theme-toggle" type="button" data-theme-toggle>DARK</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap searchrow">
+  <form class="search" role="search" action="news.html">
+    <label class="sr-only" for="q">기사 검색</label>
+    <input id="q" name="q" type="search" placeholder="기사 검색하기">
+    <button type="submit" aria-label="검색">⌕</button>
+  </form>
+</div>
+
+<!-- ================= 마스트헤드 ================= -->
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark"><span class="home" aria-hidden="true">⌂</span>재택의료<span class="news">NEWS</span></span>
+      <span class="brand__slogan">집으로 가는, 집에서 하는</span>
+    </a>
+
+    <nav class="mainnav" aria-label="주요 메뉴">
+      <ul class="mainnav__list">
+        <li><a class="mainnav__link" href="news.html">재택의료NEWS</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=hot">재택의료<span class="hi">HOT</span> 이슈 추적</a></li>
+        <li><a class="mainnav__link" href="local.html" aria-current="page">우리동네재택의료</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=nursing">가정간호·방문간호</a></li>
+        <li><a class="mainnav__link" href="qna.html">재택의료 Q&amp;A</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=health">건강정보</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Find Care</span>
+      <h1>우리동네재택의료</h1>
+      <p>병원 방문이 힘든 가족을 위해, 집으로 찾아오는 의료를 찾아보세요.
+        재택의료센터·가정간호센터·방문진료 병의원을 지역별로 검색할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="section--tight" style="border-bottom:1px solid var(--line);">
+    <div class="wrap services">
+      <a class="service" href="#center">
+        <span class="service__count">전국<small>모든 시·군·구</small></span>
+        <h3>재택의료센터</h3>
+        <p>의사·간호사·사회복지사가 한 팀이 돼 집으로 찾아갑니다.</p>
+        <span class="service__go">바로가기 →</span>
+      </a>
+      <a class="service" href="#nursing">
+        <span class="service__count">240<small>여 곳</small></span>
+        <h3>가정간호센터</h3>
+        <p>퇴원 후 집에서도 전문 가정간호사의 처치를 받을 수 있습니다.</p>
+        <span class="service__go">바로가기 →</span>
+      </a>
+      <a class="service" href="#visit">
+        <span class="service__count">2,100<small>여 곳</small></span>
+        <h3>방문진료 병의원</h3>
+        <p>거동이 불편한 환자를 위해 의사가 직접 집으로 찾아갑니다.</p>
+        <span class="service__go">바로가기 →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="center">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>재택의료센터 검색 서비스</h2>
+        <span class="muted" style="font-size:.8125rem;">기준 2026.08 · 예시 데이터</span>
+      </div>
+
+      <p class="card__excerpt" style="max-width:46rem;-webkit-line-clamp:none;font-size:.9375rem;">
+    장기요양 재택의료센터는 의사·간호사·사회복지사가 한 팀을 이뤄 장기요양보험 수급자의 집을
+    방문합니다. 방문진료와 간호, 지역 돌봄 자원 연계, 교육·상담을 함께 제공합니다.
+    이용 대상은 거동이 불편한 장기요양수급자입니다.</p>
+
+      <div class="finder mt-3 reveal">
+        <form class="finder__row" onsubmit="return false;">
+          <label class="sr-only" for="center-sido">시·도</label>
+          <select class="field" id="center-sido">
+            <option>시·도 선택</option><option>서울특별시</option><option>인천광역시</option>
+            <option>경기도</option><option>강원특별자치도</option><option>충청북도</option>
+            <option>충청남도</option><option>전북특별자치도</option><option>전라남도</option>
+            <option>경상북도</option><option>경상남도</option><option>제주특별자치도</option>
+          </select>
+          <label class="sr-only" for="center-sgg">시·군·구</label>
+          <select class="field" id="center-sgg"><option>시·군·구 선택</option></select>
+          <label class="sr-only" for="center-kw">기관명</label>
+          <input class="field" id="center-kw" type="search" placeholder="기관명으로 찾기">
+          <button class="btn" type="submit">검색</button>
+        </form>
+        <p class="form-note">초안 데모입니다. 실제 서비스 연동 시 이 자리에서 검색 결과를 안내합니다.</p>
+      </div>
+
+      <div class="scroll-x mt-4 reveal">
+        <table class="result-table" style="min-width:640px;">
+          <caption class="sr-only">재택의료센터 검색 서비스 검색 결과 예시</caption>
+          <thead><tr><th scope="col">기관명</th><th scope="col">소재지</th><th scope="col">제공 서비스</th><th scope="col">전화</th></tr></thead>
+          <tbody><tr><td>경대연합의원</td><td class="muted-cell">경상북도 영덕군</td><td class="muted-cell">방문진료·간호·연계</td><td class="muted-cell">054-000-0000</td></tr><tr><td>영덕군보건소</td><td class="muted-cell">경상북도 영덕군</td><td class="muted-cell">방문진료·간호</td><td class="muted-cell">054-000-0000</td></tr><tr><td>○○재택의료센터</td><td class="muted-cell">인천광역시 옹진군</td><td class="muted-cell">방문진료·간호·연계</td><td class="muted-cell">032-000-0000</td></tr><tr><td>△△의원</td><td class="muted-cell">서울특별시 용산구</td><td class="muted-cell">방문진료·간호·연계</td><td class="muted-cell">02-000-0000</td></tr></tbody>
+        </table>
+      </div>
+      <p class="form-note">표의 기관 정보는 화면 구성을 보기 위한 예시입니다.</p>
+    </div>
+  </section>
+
+  <section class="section" id="nursing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>가정간호센터 검색 서비스</h2>
+        <span class="muted" style="font-size:.8125rem;">기준 2026.08 · 예시 데이터</span>
+      </div>
+
+      <p class="card__excerpt" style="max-width:46rem;-webkit-line-clamp:none;font-size:.9375rem;">
+    가정전문간호사가 집으로 방문해 상처 관리, 튜브 교체, 투약 관리 등 처치를 제공합니다.
+    의사의 가정간호 의뢰가 있어야 이용할 수 있으며, 건강보험이 적용됩니다.</p>
+
+      <div class="finder mt-3 reveal">
+        <form class="finder__row" onsubmit="return false;">
+          <label class="sr-only" for="nursing-sido">시·도</label>
+          <select class="field" id="nursing-sido">
+            <option>시·도 선택</option><option>서울특별시</option><option>인천광역시</option>
+            <option>경기도</option><option>강원특별자치도</option><option>충청북도</option>
+            <option>충청남도</option><option>전북특별자치도</option><option>전라남도</option>
+            <option>경상북도</option><option>경상남도</option><option>제주특별자치도</option>
+          </select>
+          <label class="sr-only" for="nursing-sgg">시·군·구</label>
+          <select class="field" id="nursing-sgg"><option>시·군·구 선택</option></select>
+          <label class="sr-only" for="nursing-kw">기관명</label>
+          <input class="field" id="nursing-kw" type="search" placeholder="기관명으로 찾기">
+          <button class="btn" type="submit">검색</button>
+        </form>
+        <p class="form-note">초안 데모입니다. 실제 서비스 연동 시 이 자리에서 검색 결과를 안내합니다.</p>
+      </div>
+
+      <div class="scroll-x mt-4 reveal">
+        <table class="result-table" style="min-width:640px;">
+          <caption class="sr-only">가정간호센터 검색 서비스 검색 결과 예시</caption>
+          <thead><tr><th scope="col">기관명</th><th scope="col">소재지</th><th scope="col">주요 처치</th><th scope="col">전화</th></tr></thead>
+          <tbody><tr><td>의정부을지대학교병원 가정간호센터</td><td class="muted-cell">경기도 의정부시</td><td class="muted-cell">상처·튜브·투약 관리</td><td class="muted-cell">031-000-0000</td></tr><tr><td>대한민국의원</td><td class="muted-cell">서울특별시 용산구</td><td class="muted-cell">가정간호 실시 의료기관</td><td class="muted-cell">1644-5275</td></tr><tr><td>○○병원 가정간호실</td><td class="muted-cell">부산광역시 해운대구</td><td class="muted-cell">상처·통증 관리</td><td class="muted-cell">051-000-0000</td></tr></tbody>
+        </table>
+      </div>
+      <p class="form-note">표의 기관 정보는 화면 구성을 보기 위한 예시입니다.</p>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>방문진료 병의원 검색 서비스</h2>
+        <span class="muted" style="font-size:.8125rem;">기준 2026.08 · 예시 데이터</span>
+      </div>
+
+      <p class="card__excerpt" style="max-width:46rem;-webkit-line-clamp:none;font-size:.9375rem;">
+    일차의료 방문진료 수가 시범사업에 참여하는 의원급 의료기관입니다. 거동이 불편해
+    의료기관에 갈 수 없는 환자가 대상이며, 의사가 직접 집으로 방문해 진료합니다.</p>
+
+      <div class="finder mt-3 reveal">
+        <form class="finder__row" onsubmit="return false;">
+          <label class="sr-only" for="visit-sido">시·도</label>
+          <select class="field" id="visit-sido">
+            <option>시·도 선택</option><option>서울특별시</option><option>인천광역시</option>
+            <option>경기도</option><option>강원특별자치도</option><option>충청북도</option>
+            <option>충청남도</option><option>전북특별자치도</option><option>전라남도</option>
+            <option>경상북도</option><option>경상남도</option><option>제주특별자치도</option>
+          </select>
+          <label class="sr-only" for="visit-sgg">시·군·구</label>
+          <select class="field" id="visit-sgg"><option>시·군·구 선택</option></select>
+          <label class="sr-only" for="visit-kw">기관명</label>
+          <input class="field" id="visit-kw" type="search" placeholder="기관명으로 찾기">
+          <button class="btn" type="submit">검색</button>
+        </form>
+        <p class="form-note">초안 데모입니다. 실제 서비스 연동 시 이 자리에서 검색 결과를 안내합니다.</p>
+      </div>
+
+      <div class="scroll-x mt-4 reveal">
+        <table class="result-table" style="min-width:640px;">
+          <caption class="sr-only">방문진료 병의원 검색 서비스 검색 결과 예시</caption>
+          <thead><tr><th scope="col">기관명</th><th scope="col">소재지</th><th scope="col">참여 사업</th><th scope="col">전화</th></tr></thead>
+          <tbody><tr><td>대한민국365한의원</td><td class="muted-cell">서울특별시 용산구 청파로47길 7</td><td class="muted-cell">한의 방문진료 시범사업</td><td class="muted-cell">1644-5275</td></tr><tr><td>○○의원</td><td class="muted-cell">경기도 고양시 덕양구</td><td class="muted-cell">일차의료 방문진료</td><td class="muted-cell">031-000-0000</td></tr><tr><td>□□가정의학과의원</td><td class="muted-cell">광주광역시 북구</td><td class="muted-cell">일차의료 방문진료</td><td class="muted-cell">062-000-0000</td></tr></tbody>
+        </table>
+      </div>
+      <p class="form-note">표의 기관 정보는 화면 구성을 보기 위한 예시입니다.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--paper-2); border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>우리동네재택의료 기사 <span class="en">Local</span></h2>
+        <a class="link-more" href="news.html?cat=local">+ 더보기</a>
+      </div>
+      <div class="grid-2">
+        <article class="card reveal">
+          <a class="card__media" href="article.html"><div class="plate ratio-16x9"></div></a>
+          <span class="card__kicker">우리동네</span>
+          <h3 class="card__title"><a href="article.html">섬 100개 있는 인천 옹진군에 딱 2개 있는 재택의료센터…과연 군민들은</a></h3>
+          <p class="card__excerpt"><span class="byline-tag">[재택의료NEWS=허연회 기자]</span> 옹진군에는 모두 100개의 섬이 있다. 이 중 사람이 사는 유인도는 25개…</p>
+          <div class="card__meta"><span>2026.07.28</span></div>
+        </article>
+        <article class="card reveal" data-reveal-delay="80">
+          <a class="card__media" href="article.html"><div class="plate plate--warm ratio-16x9"></div></a>
+          <span class="card__kicker">우리동네</span>
+          <h3 class="card__title"><a href="article.html">경북 영덕군 재택의료센터 &#39;경대연합의원&#39;…거동 불편한 어르신들 재택의료 신청해 보세요</a></h3>
+          <p class="card__excerpt"><span class="byline-tag">[재택의료NEWS=허연회 기자]</span> 영덕군에는 모두 3곳의 재택의료센터가 있다. 영덕군보건소, 경대연합의원…</p>
+          <div class="card__meta"><span>2026.07.26</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= 푸터 ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <span class="brand__mark"><span class="home" aria-hidden="true">⌂</span>재택의료<span class="news">NEWS</span></span>
+        <p class="footer__slogan">집으로 가는, 집에서 하는</p>
+      </div>
+
+      <div>
+        <p class="footer__legal">
+          &lt;재택의료NEWS&gt;<span class="sep">|</span>대표: <strong>배재원</strong><span class="sep">|</span>서울 용산구 청파로47길 7 (청파동3가) 5층 501호<span class="sep">|</span>고객센터: <strong>1800-75(치료)83</strong><span class="sep">|</span>등록번호: 서울, 아56580<span class="sep">|</span>등록일자: 2026.06.10<span class="sep">|</span>발행·편집인: 배재원<span class="sep">|</span>청소년보호책임자: 허연회<span class="sep">|</span>사업자등록번호: 379-88-03895
+        </p>
+        <p class="footer__note">
+          &lt;재택의료NEWS&gt;의 모든 콘텐츠는 저작권법의 보호를 받고 있습니다.
+          무단 전재·복사·배포 등은 법적 제재를 받을 수 있습니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>Copyright &lt;재택의료NEWS&gt;. All rights reserved.</span>
+      <nav aria-label="정책 안내">
+        <a href="about.html#tip">독자 불만처리와 제보</a>
+        <a href="about.html#policy">청소년보호정책</a>
+        <a href="about.html#policy">개인정보 취급방침</a>
+        <a href="about.html#policy">윤리강령</a>
+        <a href="about.html">회사소개</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

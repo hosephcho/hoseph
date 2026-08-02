@@ -1,128 +1,126 @@
 <!DOCTYPE html>
-<html lang="ko" data-page="about">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>저널 소개 — 재택의료저널</title>
-<meta name="description" content="재택의료저널의 편집 원칙과 제보·문의, 뉴스레터 구독 안내입니다.">
-<meta name="theme-color" content="#12161c">
+<title>회사소개 — 재택의료NEWS</title>
+<meta name="description" content="재택의료NEWS의 편집 원칙과 제보·문의, 매체 정보 안내입니다.">
+<meta name="theme-color" content="#0e5c57">
 <link rel="stylesheet" href="assets/css/main.css">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">본문 바로가기</a>
 
+<!-- ================= 상단 유틸 ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <div class="topbar__meta">
-      <span data-today>2026년 8월 2일</span>
-      <span aria-hidden="true">·</span>
-      <span>제 148호</span>
-    </div>
-    <div class="topbar__actions">
-      <a href="about.html">저널 소개</a>
-      <a href="about.html#subscribe">뉴스레터</a>
+    <span class="topbar__date" data-today>2026.<strong>08.02</strong> 일요일</span>
+    <div class="topbar__links">
+      <a href="about.html#tip">기사제보</a><span class="sep">|</span>
+      <a href="about.html">회사소개</a><span class="sep">|</span>
+      <a href="about.html#member">로그인</a><span class="sep">|</span>
+      <a href="about.html#member">회원가입</a>
+      <span class="social">
+        <a href="about.html" aria-label="블로그">B</a>
+        <a href="about.html" aria-label="네이버 포스트">N</a>
+        <a href="about.html" aria-label="유튜브">▶</a>
+      </span>
       <button class="theme-toggle" type="button" data-theme-toggle>DARK</button>
     </div>
   </div>
 </div>
 
+<div class="wrap searchrow">
+  <form class="search" role="search" action="news.html">
+    <label class="sr-only" for="q">기사 검색</label>
+    <input id="q" name="q" type="search" placeholder="기사 검색하기">
+    <button type="submit" aria-label="검색">⌕</button>
+  </form>
+</div>
+
+<!-- ================= 마스트헤드 ================= -->
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <div class="masthead__left"><span class="eyebrow eyebrow--bare">Home-Based Care</span></div>
     <a class="brand" href="index.html">
-      <span class="brand__mark">재택<em>의료</em>저널</span>
-      <span class="brand__sub">Homecare Journal Korea</span>
+      <span class="brand__mark"><span class="home" aria-hidden="true">⌂</span>재택의료<span class="news">NEWS</span></span>
+      <span class="brand__slogan">집으로 가는, 집에서 하는</span>
     </a>
-    <div class="masthead__right"><a class="btn btn--ghost" href="#subscribe">구독하기</a></div>
+
+    <nav class="mainnav" aria-label="주요 메뉴">
+      <ul class="mainnav__list">
+        <li><a class="mainnav__link" href="news.html">재택의료NEWS</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=hot">재택의료<span class="hi">HOT</span> 이슈 추적</a></li>
+        <li><a class="mainnav__link" href="local.html">우리동네재택의료</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=nursing">가정간호·방문간호</a></li>
+        <li><a class="mainnav__link" href="qna.html">재택의료 Q&amp;A</a></li>
+        <li><a class="mainnav__link" href="news.html?cat=health">건강정보</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<nav class="nav" aria-label="주요 메뉴">
-  <div class="wrap">
-    <ul class="nav__list">
-      <li><a class="nav__link" href="index.html">홈</a></li>
-      <li><a class="nav__link" href="news.html?cat=policy">정책·제도</a></li>
-      <li><a class="nav__link" href="news.html?cat=field">현장 리포트</a></li>
-      <li><a class="nav__link" href="data.html">데이터</a></li>
-      <li><a class="nav__link" href="news.html?cat=opinion">오피니언</a></li>
-      <li><a class="nav__link" href="news.html?cat=global">해외 동향</a></li>
-      <li><a class="nav__link" href="about.html" aria-current="page">소개</a></li>
-    </ul>
-  </div>
-</nav>
 
 <main id="main">
 
   <section class="page-head">
     <div class="wrap">
       <span class="eyebrow">About</span>
-      <h1>집에서 이어지는 의료를<br>기록하는 일</h1>
-      <p>
-        재택의료저널은 방문진료와 재택의료, 그리고 그것을 둘러싼 제도를 다루는 전문 매체입니다.
-        병원 밖에서 벌어지는 의료를 정확한 언어로 기록하는 것을 목표로 합니다.
-      </p>
+      <h1>집으로 가는, 집에서 하는</h1>
+      <p>재택의료NEWS는 방문진료와 재택의료, 가정간호·방문간호, 그리고 그 제도를 다루는
+        전문 매체입니다. 병원 밖에서 벌어지는 의료를 정확한 언어로 기록합니다.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="grid-2" style="align-items: start;">
+      <div class="grid-2" style="align-items:start;">
         <div class="reveal">
           <span class="eyebrow">Mission</span>
-          <h2 class="mt-2" style="font-size: clamp(1.5rem, 2.8vw, 2.125rem);">
-            제도는 문서로, 현장은 사람으로 읽습니다
-          </h2>
-          <p class="card__excerpt mt-3">
+          <h2 class="mt-2" style="font-size:clamp(1.375rem,2.6vw,2rem);">제도는 문서로, 현장은 사람으로 읽습니다</h2>
+          <p class="card__excerpt mt-3" style="-webkit-line-clamp:none;font-size:.9375rem;">
             재택의료는 고시와 지침, 수가 코드로 이루어진 제도이면서 동시에 누군가의 현관 앞에서
-            시작되는 진료입니다. 우리는 두 층위를 함께 다룹니다. 공고와 개정안을 끝까지 읽고,
-            그 문장이 어느 집의 어떤 장면을 바꾸는지 확인합니다.
+            시작되는 진료입니다. 재택의료NEWS는 두 층위를 함께 다룹니다. 공고와 개정안을 끝까지
+            읽고, 그 문장이 어느 집의 어떤 장면을 바꾸는지 확인합니다.
           </p>
-          <p class="card__excerpt mt-2">
+          <p class="card__excerpt mt-2" style="-webkit-line-clamp:none;font-size:.9375rem;">
             독자는 재택의료센터와 방문진료 의원의 실무자, 지자체 통합돌봄 담당자, 정책 연구자,
-            그리고 가족을 집에서 돌보는 보호자입니다.
+            그리고 무엇보다 가족을 집에서 돌보는 보호자입니다.
           </p>
         </div>
-
         <div class="reveal" data-reveal-delay="120">
-          <div class="plate plate--brass ratio-3x2">
-            <span class="plate__caption">Editorial · 재택의료저널</span>
+          <div class="plate plate--warm ratio-3x2">
+            <span class="plate__caption">Editorial · 재택의료NEWS</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section band-ink" id="editorial">
+  <section class="section" style="background:var(--surface-ink);color:var(--on-ink);">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Editorial</span>
-          <h2>편집 원칙</h2>
-        </div>
+      <div class="section-head" style="border-color:var(--line-on-ink);">
+        <h2 style="color:var(--on-ink);">편집 원칙 <span class="en">Editorial</span></h2>
       </div>
-
       <div class="grid-3">
         <div class="reveal">
-          <span class="stat__value" style="color: var(--brass-2); font-family: var(--serif); font-size: 2.5rem;">01</span>
-          <h3 class="mt-2" style="font-size: 1.25rem; color: var(--on-ink);">원문을 먼저 봅니다</h3>
-          <p class="card__excerpt mt-2">
-            보도자료가 아니라 공고문과 지침 원문을 근거로 씁니다. 인용한 문서는 기사 하단에
-            출처와 함께 밝힙니다.
+          <span style="font-family:var(--serif);font-size:2.25rem;font-weight:700;color:var(--brass-2);">01</span>
+          <h3 class="mt-1" style="font-size:1.1875rem;color:var(--on-ink);">원문을 먼저 봅니다</h3>
+          <p class="card__excerpt mt-2" style="color:var(--on-ink-muted);-webkit-line-clamp:none;">
+            보도자료가 아니라 공고문과 지침 원문을 근거로 씁니다. 인용한 문서는 기사에 출처와 함께 밝힙니다.
           </p>
         </div>
         <div class="reveal" data-reveal-delay="80">
-          <span class="stat__value" style="color: var(--brass-2); font-family: var(--serif); font-size: 2.5rem;">02</span>
-          <h3 class="mt-2" style="font-size: 1.25rem; color: var(--on-ink);">환자를 대상화하지 않습니다</h3>
-          <p class="card__excerpt mt-2">
-            현장 취재에서는 사전 동의를 받고, 식별 가능한 정보를 남기지 않습니다. 사연보다
-            구조를 씁니다.
+          <span style="font-family:var(--serif);font-size:2.25rem;font-weight:700;color:var(--brass-2);">02</span>
+          <h3 class="mt-1" style="font-size:1.1875rem;color:var(--on-ink);">환자를 대상화하지 않습니다</h3>
+          <p class="card__excerpt mt-2" style="color:var(--on-ink-muted);-webkit-line-clamp:none;">
+            현장 취재에서는 사전 동의를 받고, 식별 가능한 정보를 남기지 않습니다. 사연보다 구조를 씁니다.
           </p>
         </div>
         <div class="reveal" data-reveal-delay="160">
-          <span class="stat__value" style="color: var(--brass-2); font-family: var(--serif); font-size: 2.5rem;">03</span>
-          <h3 class="mt-2" style="font-size: 1.25rem; color: var(--on-ink);">수치는 정의와 함께</h3>
-          <p class="card__excerpt mt-2">
+          <span style="font-family:var(--serif);font-size:2.25rem;font-weight:700;color:var(--brass-2);">03</span>
+          <h3 class="mt-1" style="font-size:1.1875rem;color:var(--on-ink);">수치는 정의와 함께</h3>
+          <p class="card__excerpt mt-2" style="color:var(--on-ink-muted);-webkit-line-clamp:none;">
             모든 지표에 정의·기준일·출처를 병기합니다. 추정치는 추정치라고 명시합니다.
           </p>
         </div>
@@ -130,61 +128,63 @@
     </div>
   </section>
 
-  <section class="section" id="subscribe">
+  <section class="section cta-band" id="tip">
     <div class="wrap">
-      <div class="subscribe reveal">
-        <div>
-          <span class="eyebrow">Newsletter</span>
-          <h2>매주 화요일 아침, 재택의료 한 통</h2>
-          <p>
-            한 주의 정책 변화와 현장 기록을 정리해 보내드립니다. 방문진료 수가, 통합돌봄 지침,
-            지자체 공고까지 — 놓치기 쉬운 문서들을 읽어드립니다.
-          </p>
+      <div class="section-head"><h2>제보와 문의 <span class="en">Contact</span></h2></div>
+      <div class="grid-3">
+        <div class="cta-card reveal">
+          <h3>기사제보</h3>
+          <p>현장에서 확인한 문제, 알려지지 않은 제도 변화, 지역의 좋은 사례를 알려주세요.</p>
+          <p class="mt-3"><a class="btn btn--ghost" href="tel:18007583">고객센터 1800-7583</a></p>
         </div>
-        <form data-subscribe novalidate>
-          <div class="field-row">
-            <label class="sr-only" for="email-about">이메일 주소</label>
-            <input class="field" id="email-about" type="email" name="email" placeholder="name@example.com" required>
-            <button class="btn btn--brass" type="submit">구독 신청</button>
-          </div>
-          <p class="form-note" data-subscribe-note>
-            구독은 언제든 해지할 수 있으며, 이메일 주소는 뉴스레터 발송 외 용도로 사용하지 않습니다.
-          </p>
-        </form>
+        <div class="cta-card reveal" data-reveal-delay="80">
+          <h3>기고·인터뷰</h3>
+          <p>재택의료 실무자와 연구자의 기고를 상시 받습니다. 주제와 요지를 보내주세요.</p>
+          <p class="mt-3"><a class="btn btn--ghost" href="qna.html">문의 남기기</a></p>
+        </div>
+        <div class="cta-card reveal" data-reveal-delay="160">
+          <h3>독자 불만처리와 정정</h3>
+          <p>사실과 다른 내용을 발견하시면 알려주세요. 확인 후 기사에 정정 사항을 남깁니다.</p>
+          <p class="mt-3"><a class="btn btn--ghost" href="qna.html">정정 요청</a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contact" style="background: var(--paper-2); border-block: 1px solid var(--line);">
+  <section class="section" id="member">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Contact</span>
-          <h2>제보와 문의</h2>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="reveal">
-          <h3 style="font-family: var(--sans); font-size: 1rem;">기사 제보</h3>
-          <p class="card__excerpt mt-1">
-            현장에서 확인한 문제, 공개되지 않은 지침 변경, 지자체 운영 사례를 알려주세요.
+      <div class="section-head"><h2>회원 서비스 <span class="en">Membership</span></h2></div>
+      <div class="grid-2" style="align-items:start;">
+        <div class="finder reveal">
+          <h3 style="font-size:1.125rem;">뉴스레터 구독</h3>
+          <p class="card__excerpt mt-1" style="-webkit-line-clamp:none;">
+            한 주의 재택의료 정책과 현장을 정리해 보내드립니다.
           </p>
-          <p class="mt-2"><a class="btn btn--ghost" href="mailto:tip@example.com">tip@example.com</a></p>
-        </div>
-        <div class="reveal" data-reveal-delay="80">
-          <h3 style="font-family: var(--sans); font-size: 1rem;">기고·인터뷰</h3>
-          <p class="card__excerpt mt-1">
-            재택의료 실무자와 연구자의 기고를 상시 받습니다. 주제와 400자 내외 요지를 보내주세요.
+          <form class="finder__row mt-3" data-subscribe novalidate>
+            <label class="sr-only" for="email">이메일 주소</label>
+            <input class="field" id="email" type="email" placeholder="name@example.com" required>
+            <button class="btn" type="submit">구독 신청</button>
+          </form>
+          <p class="form-note" data-subscribe-note>
+            구독은 언제든 해지할 수 있으며, 이메일 주소는 발송 외 용도로 사용하지 않습니다.
           </p>
-          <p class="mt-2"><a class="btn btn--ghost" href="mailto:editor@example.com">editor@example.com</a></p>
         </div>
-        <div class="reveal" data-reveal-delay="160">
-          <h3 style="font-family: var(--sans); font-size: 1rem;">정정 요청</h3>
-          <p class="card__excerpt mt-1">
-            사실과 다른 내용을 발견하시면 알려주세요. 확인 후 기사 하단에 정정 사항을 남깁니다.
-          </p>
-          <p class="mt-2"><a class="btn btn--ghost" href="mailto:correction@example.com">correction@example.com</a></p>
+        <div class="reveal" data-reveal-delay="80" id="policy">
+          <h3 style="font-size:1.125rem;">매체 정보</h3>
+          <table class="result-table mt-2">
+            <caption class="sr-only">재택의료NEWS 매체 정보</caption>
+            <tbody>
+              <tr><th scope="row" style="width:9rem;">발행·편집인</th><td>배재원</td></tr>
+              <tr><th scope="row">대표</th><td>배재원</td></tr>
+              <tr><th scope="row">청소년보호책임자</th><td>허연회</td></tr>
+              <tr><th scope="row">등록번호</th><td>서울, 아56580</td></tr>
+              <tr><th scope="row">등록일자</th><td>2026.06.10</td></tr>
+              <tr><th scope="row">사업자등록번호</th><td>379-88-03895</td></tr>
+              <tr><th scope="row">주소</th><td>서울 용산구 청파로47길 7 (청파동3가) 5층 501호</td></tr>
+              <tr><th scope="row">고객센터</th><td>1800-75(치료)83</td></tr>
+            </tbody>
+          </table>
+          <p class="form-note">청소년보호정책·개인정보 취급방침·윤리강령 전문은 별도 페이지로 연결할 자리입니다.</p>
         </div>
       </div>
     </div>
@@ -192,44 +192,35 @@
 
 </main>
 
+<!-- ================= 푸터 ================= -->
 <footer class="footer">
   <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <span class="brand__mark">재택<em>의료</em>저널</span>
-        <p>대한민국 재택의료의 오늘을 기록합니다. 방문진료, 장기요양 재택의료센터, 의료·요양 통합돌봄 — 집에서 이어지는 의료의 정책과 현장을 전합니다.</p>
-      </div>
+    <div class="footer__top">
       <div>
-        <h4>섹션</h4>
-        <ul>
-          <li><a href="news.html?cat=policy">정책·제도</a></li>
-          <li><a href="news.html?cat=field">현장 리포트</a></li>
-          <li><a href="data.html">데이터</a></li>
-          <li><a href="news.html?cat=opinion">오피니언</a></li>
-          <li><a href="news.html?cat=global">해외 동향</a></li>
-        </ul>
+        <span class="brand__mark"><span class="home" aria-hidden="true">⌂</span>재택의료<span class="news">NEWS</span></span>
+        <p class="footer__slogan">집으로 가는, 집에서 하는</p>
       </div>
+
       <div>
-        <h4>저널</h4>
-        <ul>
-          <li><a href="about.html">소개</a></li>
-          <li><a href="about.html#editorial">편집 원칙</a></li>
-          <li><a href="about.html#contact">제보·문의</a></li>
-          <li><a href="about.html#subscribe">뉴스레터</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>연락</h4>
-        <ul>
-          <li>서울특별시 ○○구 ○○로 00</li>
-          <li><a href="mailto:contact@example.com">contact@example.com</a></li>
-          <li>02-000-0000</li>
-        </ul>
+        <p class="footer__legal">
+          &lt;재택의료NEWS&gt;<span class="sep">|</span>대표: <strong>배재원</strong><span class="sep">|</span>서울 용산구 청파로47길 7 (청파동3가) 5층 501호<span class="sep">|</span>고객센터: <strong>1800-75(치료)83</strong><span class="sep">|</span>등록번호: 서울, 아56580<span class="sep">|</span>등록일자: 2026.06.10<span class="sep">|</span>발행·편집인: 배재원<span class="sep">|</span>청소년보호책임자: 허연회<span class="sep">|</span>사업자등록번호: 379-88-03895
+        </p>
+        <p class="footer__note">
+          &lt;재택의료NEWS&gt;의 모든 콘텐츠는 저작권법의 보호를 받고 있습니다.
+          무단 전재·복사·배포 등은 법적 제재를 받을 수 있습니다.
+        </p>
       </div>
     </div>
+
     <div class="footer__bottom">
-      <span>© 2026 재택의료저널. All rights reserved.</span>
-      <span>본 페이지는 디자인 초안이며, 연락처는 예시입니다.</span>
+      <span>Copyright &lt;재택의료NEWS&gt;. All rights reserved.</span>
+      <nav aria-label="정책 안내">
+        <a href="about.html#tip">독자 불만처리와 제보</a>
+        <a href="about.html#policy">청소년보호정책</a>
+        <a href="about.html#policy">개인정보 취급방침</a>
+        <a href="about.html#policy">윤리강령</a>
+        <a href="about.html">회사소개</a>
+      </nav>
     </div>
   </div>
 </footer>

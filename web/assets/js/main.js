@@ -188,12 +188,22 @@
     var nodes = document.querySelectorAll('[data-today]');
     if (!nodes.length) return;
 
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
     var now = new Date();
     var days = ['일', '월', '화', '수', '목', '금', '토'];
-    var text = now.getFullYear() + '년 ' + (now.getMonth() + 1) + '월 ' + now.getDate() +
-      '일 ' + days[now.getDay()] + '요일';
+    var md = pad(now.getMonth() + 1) + '.' + pad(now.getDate());
+    var suffix = ' ' + days[now.getDay()] + '요일';
 
-    nodes.forEach(function (node) { node.textContent = text; });
+    nodes.forEach(function (node) {
+      // 2026.08.02 일요일 — 월·일만 강조
+      node.textContent = '';
+      node.appendChild(document.createTextNode(now.getFullYear() + '.'));
+      var strong = document.createElement('strong');
+      strong.textContent = md;
+      node.appendChild(strong);
+      node.appendChild(document.createTextNode(suffix));
+    });
   }
 
   /* ---------- 구독 폼 (데모) ---------- */
