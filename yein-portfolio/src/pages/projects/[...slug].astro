@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('projects', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const categoryLabel: Record<string, string> = {
+  art: 'Art',
+  essay: 'Essay',
+  other: 'Other',
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary}>
+  <article class="wrap post">
+    <div class="post-header">
+      <p class="eyebrow">{categoryLabel[post.data.category]}</p>
+      <h1>{post.data.title}</h1>
+      <p class="post-meta">
+        <span>{post.data.date.toLocaleDateString('ko-KR')}</span>
+      </p>
+    </div>
+
+    {post.data.cover && (
+      <div class="post-cover">
+        <img src={post.data.cover} alt={post.data.title} />
+      </div>
+    )}
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <p class="back-link"><a href="/projects/">← Projects 목록으로</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding: 48px 24px 64px;
+  }
+  .back-link {
+    margin-top: 40px;
+    font-size: 14px;
+  }
+  .back-link a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+</style>

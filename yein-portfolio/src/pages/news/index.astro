@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="News Clips" description="Yein이 좋아하는 뉴스 스크랩 모음">
+  <section class="wrap page-head">
+    <p class="eyebrow">Scrapbook</p>
+    <h1>News Clips</h1>
+    <p class="page-lede">평소에 관심있게 본 뉴스와 그 이유를 기록하는 공간이에요.</p>
+  </section>
+
+  <section class="wrap">
+    {posts.length > 0 ? (
+      <div class="card-grid">
+        {posts.map((post) => (
+          <a class="card" href={`/news/${post.slug}/`}>
+            <div class="card-cover">
+              {post.data.cover && <img src={post.data.cover} alt={post.data.title} />}
+            </div>
+            <div class="card-body">
+              <span class="card-tag">{post.data.sourceName}</span>
+              <h3 class="card-title">{post.data.title}</h3>
+              <span class="card-date">{post.data.date.toLocaleDateString('ko-KR')}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">아직 등록된 뉴스 클립이 없어요.</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 48px 24px 28px;
+  }
+  .page-lede {
+    color: var(--ink-soft);
+    margin: 8px 0 0;
+  }
+</style>

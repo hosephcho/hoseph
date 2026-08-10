@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const about = await getEntry('about', 'index');
+const { Content } = await about.render();
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const news = (await getCollection('news', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const categoryLabel: Record<string, string> = {
+  art: 'Art',
+  essay: 'Essay',
+  other: 'Other',
+};
+---
+
+<BaseLayout title="About" description={about.data.tagline}>
+  <section class="wrap hero">
+    <div class="hero-photo" aria-hidden="true">
+      {about.data.photo
+        ? <img src={about.data.photo} alt={about.data.name} />
+        : <span>{about.data.name.charAt(0)}</span>}
+    </div>
+    <div class="hero-text">
+      <p class="eyebrow">{about.data.grade} · {about.data.school}</p>
+      <h1>{about.data.name}</h1>
+      <p class="hero-tagline">{about.data.tagline}</p>
+      <ul class="interest-list">
+        {about.data.interests.map((interest) => (
+          <li>{interest}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap post-body about-body">
+    <Content />
+  </section>
+
+  <section class="wrap section-block">
+    <div class="section-heading">
+      <h2>최근 Projects</h2>
+      <a class="see-all" href="/projects/">전체 보기 →</a>
+    </div>
+    {projects.length > 0 ? (
+      <div class="card-grid">
+        {projects.map((post) => (
+          <a class="card" href={`/projects/${post.slug}/`}>
+            <div class="card-cover">
+              {post.data.cover && <img src={post.data.cover} alt={post.data.title} />}
+            </div>
+            <div class="card-body">
+              <span class="card-tag">{categoryLabel[post.data.category]}</span>
+              <h3 class="card-title">{post.data.title}</h3>
+              <p class="card-summary">{post.data.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">아직 등록된 프로젝트가 없어요. 곧 채워질 예정이에요!</p>
+    )}
+  </section>
+
+  <section class="wrap section-block">
+    <div class="section-heading">
+      <h2>최근 News Clips</h2>
+      <a class="see-all" href="/news/">전체 보기 →</a>
+    </div>
+    {news.length > 0 ? (
+      <div class="card-grid">
+        {news.map((post) => (
+          <a class="card" href={`/news/${post.slug}/`}>
+            <div class="card-cover">
+              {post.data.cover && <img src={post.data.cover} alt={post.data.title} />}
+            </div>
+            <div class="card-body">
+              <span class="card-tag">{post.data.sourceName}</span>
+              <h3 class="card-title">{post.data.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">아직 등록된 뉴스 클립이 없어요. 곧 채워질 예정이에요!</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 56px 24px 40px;
+  }
+
+  .hero-photo {
+    flex-shrink: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--surface-lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-photo span {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--accent-ink);
+  }
+
+  .hero-text h1 {
+    font-size: clamp(28px, 4vw, 36px);
+    margin: 0 0 10px;
+  }
+
+  .hero-tagline {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+
+  .interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .interest-list li {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--surface-blush-soft);
+  }
+
+  @media (max-width: 560px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+    .interest-list {
+      justify-content: center;
+    }
+  }
+
+  .about-body {
+    padding-bottom: 8px;
+  }
+
+  .section-block {
+    padding: 40px 24px 0;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .section-heading h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .see-all {
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+</style>

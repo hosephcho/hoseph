@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.title}>
+  <article class="wrap post">
+    <div class="post-header">
+      <p class="eyebrow">{post.data.sourceName}</p>
+      <h1>{post.data.title}</h1>
+      <p class="post-meta">
+        <span>{post.data.date.toLocaleDateString('ko-KR')}</span>
+        {post.data.tags.map((tag) => <span class="card-tag">{tag}</span>)}
+      </p>
+    </div>
+
+    {post.data.cover && (
+      <div class="post-cover">
+        <img src={post.data.cover} alt={post.data.title} />
+      </div>
+    )}
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <a class="news-source" href={post.data.sourceUrl} target="_blank" rel="noopener noreferrer">
+      원문 기사 보러가기 ({post.data.sourceName}) ↗
+    </a>
+
+    <p class="back-link"><a href="/news/">← News Clips 목록으로</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding: 48px 24px 64px;
+  }
+  .back-link {
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .back-link a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+</style>

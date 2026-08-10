@@ -1,0 +1,91 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Netlify Identity handles the login popup for this admin panel.
+local_backend: false
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+locale: "en"
+
+collections:
+  - name: "about"
+    label: "About Me 페이지"
+    files:
+      - name: "about"
+        label: "About Me"
+        file: "src/content/about/index.md"
+        fields:
+          - { label: "이름 (Name)", name: "name", widget: "string" }
+          - { label: "한 줄 소개 (Tagline)", name: "tagline", widget: "string" }
+          - { label: "학교 (School)", name: "school", widget: "string" }
+          - { label: "학년 (Grade)", name: "grade", widget: "string" }
+          - { label: "지역 (Location)", name: "location", widget: "string" }
+          - label: "관심사 (Interests)"
+            name: "interests"
+            widget: "list"
+            field: { label: "Interest", name: "interest", widget: "string" }
+          - label: "프로필 사진 (Photo)"
+            name: "photo"
+            widget: "image"
+            required: false
+          - { label: "자기소개 내용 (Bio)", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects (Art / Essay)"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "제목 (Title)", name: "title", widget: "string" }
+      - label: "카테고리 (Category)"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Art", value: "art" }
+          - { label: "Essay", value: "essay" }
+          - { label: "Other", value: "other" }
+      - { label: "날짜 (Date)", name: "date", widget: "datetime" }
+      - label: "대표 이미지 (Cover Image)"
+        name: "cover"
+        widget: "image"
+        required: false
+      - { label: "요약 (Summary)", name: "summary", widget: "text" }
+      - label: "임시 저장 (Draft, 체크하면 사이트에 안 보여요)"
+        name: "draft"
+        widget: "boolean"
+        default: false
+      - { label: "본문 (Content)", name: "body", widget: "markdown" }
+
+  - name: "news"
+    label: "News Clips"
+    label_singular: "News Clip"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "제목 (Title)", name: "title", widget: "string" }
+      - { label: "날짜 (Date)", name: "date", widget: "datetime" }
+      - { label: "출처 이름 (Source Name)", name: "sourceName", widget: "string" }
+      - { label: "원문 링크 (Source URL)", name: "sourceUrl", widget: "string" }
+      - label: "대표 이미지 (Cover Image)"
+        name: "cover"
+        widget: "image"
+        required: false
+      - label: "태그 (Tags)"
+        name: "tags"
+        widget: "list"
+        default: []
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - label: "임시 저장 (Draft, 체크하면 사이트에 안 보여요)"
+        name: "draft"
+        widget: "boolean"
+        default: false
+      - label: "왜 스크랩했나요? (Content)"
+        name: "body"
+        widget: "markdown"

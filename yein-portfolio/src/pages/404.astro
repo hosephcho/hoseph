@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="페이지를 찾을 수 없어요">
+  <section class="wrap not-found">
+    <p class="eyebrow">404</p>
+    <h1>페이지를 찾을 수 없어요</h1>
+    <p>주소가 바뀌었거나 존재하지 않는 페이지예요.</p>
+    <a class="btn" href="/">홈으로 돌아가기</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding: 96px 24px;
+    text-align: center;
+  }
+  .not-found p:not(.eyebrow) {
+    color: var(--ink-soft);
+    margin: 10px 0 24px;
+  }
+</style>
