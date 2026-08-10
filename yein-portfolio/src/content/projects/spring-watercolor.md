@@ -1,18 +1,18 @@
 ---
-title: "봄 수채화 - Spring Watercolor Series"
+title: "Spring Watercolor Series"
 category: art
 date: 2026-04-02
 cover: ""
-summary: "미술 수업에서 그린 수채화 연작. 봄을 주제로 색감 실험을 해봤어요."
+summary: "A watercolor series from art class, exploring pastel colors inspired by spring."
 draft: false
 ---
 
-미술 수업 프로젝트로 진행한 수채화 연작이에요. 이번 과제의 주제는 "계절"이었고, 저는 봄의 파스텔 색감을 표현하는 데 집중했어요.
+This watercolor series was made for an art class project. The assignment theme was "Seasons," and I focused on capturing the pastel colors of spring.
 
-## 작업 과정
+## Process
 
-1. 스케치 - 벚꽃과 하늘을 간단하게 스케치했어요.
-2. 색 레이어링 - 연한 색부터 진한 색 순서로 여러 겹 칠했어요.
-3. 디테일 - 마지막에 가는 붓으로 꽃잎 디테일을 추가했어요.
+1. Sketch - I sketched cherry blossoms and a simple sky.
+2. Layering color - I painted in several layers, starting light and building up to darker tones.
+3. Detail work - At the end, I used a fine brush to add detail to the petals.
 
-선생님 피드백: "색의 대비와 여백을 잘 활용했다"는 코멘트를 받았어요.
+Teacher feedback: "Great use of color contrast and negative space."

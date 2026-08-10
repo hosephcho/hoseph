@@ -20,11 +20,11 @@ const tabs = [
 ];
 ---
 
-<BaseLayout title="Projects" description="Yein이 학교에서 만든 Art, 에세이 등 산출물 모음">
+<BaseLayout title="Projects" description="A collection of Art, essays, and other work Yein has made at school">
   <section class="wrap page-head">
     <p class="eyebrow">Portfolio</p>
     <h1>Projects</h1>
-    <p class="page-lede">학교에서 진행한 Art, 에세이 등 결과물을 모아둔 공간이에요.</p>
+    <p class="page-lede">A collection of Art, essays, and other work from school.</p>
   </section>
 
   <section class="wrap">
@@ -47,13 +47,13 @@ const tabs = [
               <span class="card-tag">{categoryLabel[post.data.category]}</span>
               <h3 class="card-title">{post.data.title}</h3>
               <p class="card-summary">{post.data.summary}</p>
-              <span class="card-date">{post.data.date.toLocaleDateString('ko-KR')}</span>
+              <span class="card-date">{post.data.date.toLocaleDateString('en-US')}</span>
             </div>
           </a>
         ))}
       </div>
     ) : (
-      <p class="empty-state">아직 등록된 프로젝트가 없어요.</p>
+      <p class="empty-state">No projects yet.</p>
     )}
   </section>
 </BaseLayout>

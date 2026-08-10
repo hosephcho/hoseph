@@ -45,8 +45,8 @@ const categoryLabel: Record<string, string> = {
 
   <section class="wrap section-block">
     <div class="section-heading">
-      <h2>최근 Projects</h2>
-      <a class="see-all" href="/projects/">전체 보기 →</a>
+      <h2>Recent Projects</h2>
+      <a class="see-all" href="/projects/">See all →</a>
     </div>
     {projects.length > 0 ? (
       <div class="card-grid">
@@ -64,14 +64,14 @@ const categoryLabel: Record<string, string> = {
         ))}
       </div>
     ) : (
-      <p class="empty-state">아직 등록된 프로젝트가 없어요. 곧 채워질 예정이에요!</p>
+      <p class="empty-state">No projects yet — check back soon!</p>
     )}
   </section>
 
   <section class="wrap section-block">
     <div class="section-heading">
-      <h2>최근 News Clips</h2>
-      <a class="see-all" href="/news/">전체 보기 →</a>
+      <h2>Recent News Clips</h2>
+      <a class="see-all" href="/news/">See all →</a>
     </div>
     {news.length > 0 ? (
       <div class="card-grid">
@@ -88,7 +88,7 @@ const categoryLabel: Record<string, string> = {
         ))}
       </div>
     ) : (
-      <p class="empty-state">아직 등록된 뉴스 클립이 없어요. 곧 채워질 예정이에요!</p>
+      <p class="empty-state">No news clips yet — check back soon!</p>
     )}
   </section>
 </BaseLayout>

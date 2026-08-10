@@ -14,26 +14,26 @@ locale: "en"
 
 collections:
   - name: "about"
-    label: "About Me 페이지"
+    label: "About Me Page"
     files:
       - name: "about"
         label: "About Me"
         file: "src/content/about/index.md"
         fields:
-          - { label: "이름 (Name)", name: "name", widget: "string" }
-          - { label: "한 줄 소개 (Tagline)", name: "tagline", widget: "string" }
-          - { label: "학교 (School)", name: "school", widget: "string" }
-          - { label: "학년 (Grade)", name: "grade", widget: "string" }
-          - { label: "지역 (Location)", name: "location", widget: "string" }
-          - label: "관심사 (Interests)"
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "School", name: "school", widget: "string" }
+          - { label: "Grade", name: "grade", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - label: "Interests"
             name: "interests"
             widget: "list"
             field: { label: "Interest", name: "interest", widget: "string" }
-          - label: "프로필 사진 (Photo)"
+          - label: "Profile Photo"
             name: "photo"
             widget: "image"
             required: false
-          - { label: "자기소개 내용 (Bio)", name: "body", widget: "markdown" }
+          - { label: "Bio", name: "body", widget: "markdown" }
 
   - name: "projects"
     label: "Projects (Art / Essay)"
@@ -42,25 +42,25 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "제목 (Title)", name: "title", widget: "string" }
-      - label: "카테고리 (Category)"
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
         name: "category"
         widget: "select"
         options:
           - { label: "Art", value: "art" }
           - { label: "Essay", value: "essay" }
           - { label: "Other", value: "other" }
-      - { label: "날짜 (Date)", name: "date", widget: "datetime" }
-      - label: "대표 이미지 (Cover Image)"
+      - { label: "Date", name: "date", widget: "datetime" }
+      - label: "Cover Image"
         name: "cover"
         widget: "image"
         required: false
-      - { label: "요약 (Summary)", name: "summary", widget: "text" }
-      - label: "임시 저장 (Draft, 체크하면 사이트에 안 보여요)"
+      - { label: "Summary", name: "summary", widget: "text" }
+      - label: "Draft (check to hide from the site)"
         name: "draft"
         widget: "boolean"
         default: false
-      - { label: "본문 (Content)", name: "body", widget: "markdown" }
+      - { label: "Content", name: "body", widget: "markdown" }
 
   - name: "news"
     label: "News Clips"
@@ -69,23 +69,23 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "제목 (Title)", name: "title", widget: "string" }
-      - { label: "날짜 (Date)", name: "date", widget: "datetime" }
-      - { label: "출처 이름 (Source Name)", name: "sourceName", widget: "string" }
-      - { label: "원문 링크 (Source URL)", name: "sourceUrl", widget: "string" }
-      - label: "대표 이미지 (Cover Image)"
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Source Name", name: "sourceName", widget: "string" }
+      - { label: "Source URL", name: "sourceUrl", widget: "string" }
+      - label: "Cover Image"
         name: "cover"
         widget: "image"
         required: false
-      - label: "태그 (Tags)"
+      - label: "Tags"
         name: "tags"
         widget: "list"
         default: []
         field: { label: "Tag", name: "tag", widget: "string" }
-      - label: "임시 저장 (Draft, 체크하면 사이트에 안 보여요)"
+      - label: "Draft (check to hide from the site)"
         name: "draft"
         widget: "boolean"
         default: false
-      - label: "왜 스크랩했나요? (Content)"
+      - label: "Why I saved this"
         name: "body"
         widget: "markdown"

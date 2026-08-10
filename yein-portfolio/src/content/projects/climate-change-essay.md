@@ -1,18 +1,18 @@
 ---
-title: "기후 변화와 나의 세대 - Climate Change and My Generation"
+title: "Climate Change and My Generation"
 category: essay
 date: 2026-03-15
 cover: ""
-summary: "English 수업 에세이 과제. 기후 변화가 우리 세대에 미치는 영향에 대해 썼어요."
+summary: "A persuasive essay for English class about how climate change affects my generation."
 draft: false
 ---
 
-English 수업에서 작성한 설득형 에세이예요. 기후 변화 문제에 대해 제 또래 친구들이 할 수 있는 행동을 중심으로 논지를 전개했어요.
+This is a persuasive essay I wrote for English class. I built my argument around the actions students my age can actually take on climate change.
 
-## 개요
+## Outline
 
-- 서론: 기후 변화가 왜 우리 세대의 문제인지
-- 본론: 학교와 개인 차원에서 실천할 수 있는 방법
-- 결론: 작은 행동이 만드는 변화
+- Introduction: Why climate change is my generation's problem
+- Body: Steps we can take at school and individually
+- Conclusion: How small actions add up to change
 
-선생님으로부터 "논리적 구조와 구체적인 예시가 좋았다"는 피드백을 받았어요.
+My teacher's feedback: "Strong logical structure and specific examples."
