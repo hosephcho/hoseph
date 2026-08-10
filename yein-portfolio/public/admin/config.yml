@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: claude/semantic-kernel-agentic-ai-Uw6Ps
 
 # Netlify Identity handles the login popup for this admin panel.
 local_backend: false
