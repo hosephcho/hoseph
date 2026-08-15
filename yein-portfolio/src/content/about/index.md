@@ -6,9 +6,8 @@ grade: "Grade 8"
 location: "Seoul, South Korea"
 interests:
   - "Art"
-  - "Essay Writing"
-  - "Global News"
-  - "K-pop & World Culture"
+  - "Film"
+  - "Oldies Music (60s-2010s)"
 photo: ""
 ---
 
