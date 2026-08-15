@@ -33,6 +33,10 @@ collections:
             name: "photo"
             widget: "image"
             required: false
+          - { label: "Favorite Music", name: "favoriteMusic", widget: "string", required: false }
+          - { label: "Favorite Movies", name: "favoriteMovies", widget: "string", required: false }
+          - { label: "Favorite TV Shows", name: "favoriteShows", widget: "string", required: false }
+          - { label: "Favorite Books", name: "favoriteBooks", widget: "string", required: false }
           - { label: "Bio", name: "body", widget: "markdown" }
 
   - name: "projects"

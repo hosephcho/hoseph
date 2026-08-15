@@ -18,6 +18,13 @@ const categoryLabel: Record<string, string> = {
   essay: 'Essay',
   other: 'Other',
 };
+
+const favorites = [
+  { label: 'Music', value: about.data.favoriteMusic },
+  { label: 'Movies', value: about.data.favoriteMovies },
+  { label: 'TV Shows', value: about.data.favoriteShows },
+  { label: 'Books', value: about.data.favoriteBooks },
+].filter((row) => row.value);
 ---
 
 <BaseLayout title="About" description={about.data.tagline}>
@@ -42,6 +49,22 @@ const categoryLabel: Record<string, string> = {
   <section class="wrap post-body about-body">
     <Content />
   </section>
+
+  {favorites.length > 0 && (
+    <section class="wrap section-block">
+      <div class="section-heading">
+        <h2>Favorites</h2>
+      </div>
+      <dl class="favorites-list">
+        {favorites.map((row) => (
+          <div class="favorites-row">
+            <dt>{row.label}</dt>
+            <dd>{row.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )}
 
   <section class="wrap section-block">
     <div class="section-heading">
@@ -190,5 +213,47 @@ const categoryLabel: Record<string, string> = {
     font-weight: 700;
     text-decoration: none;
     color: var(--ink-soft);
+  }
+
+  .favorites-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-elevated);
+  }
+
+  .favorites-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  .favorites-row:not(:last-child) {
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .favorites-row dt {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .favorites-row dd {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .favorites-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
   }
 </style>

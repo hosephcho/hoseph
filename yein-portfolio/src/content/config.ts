@@ -35,6 +35,10 @@ const about = defineCollection({
     location: z.string(),
     interests: z.array(z.string()).default([]),
     photo: z.string().optional(),
+    favoriteMusic: z.string().optional(),
+    favoriteMovies: z.string().optional(),
+    favoriteShows: z.string().optional(),
+    favoriteBooks: z.string().optional(),
   }),
 });
 
